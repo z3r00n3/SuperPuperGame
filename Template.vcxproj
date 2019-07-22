@@ -122,9 +122,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
+    <ClCompile Include="menu.cpp" />
     <ClCompile Include="template.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="menu.h" />
     <ClInclude Include="template.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

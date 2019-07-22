@@ -19,12 +19,12 @@ class app
 	public:
 
 		// constructor
-		app() { memset ( this, 0, sizeof(app)); }
+		app() { memset(this, 0, sizeof(app)); }
 
 		// main app functions - mike to experiment with a derived class for this..
-		void Begin( void );
-		int Loop( void );
-		void End( void );
+		void Begin(void);
+		int Loop(void);
+		void End(void);
 };
 
 extern app App;
