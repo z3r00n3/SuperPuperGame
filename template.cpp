@@ -11,7 +11,7 @@ void app::Begin(void)
 	// Alternative approach for the coordinate system in AGK, that set fixed resolution
 	// Default approach it's a percentage based system where 0,0 represents the
 	// top left corner and 100,100 the bottom right
-	agk::SetVirtualResolution(1024, 768);
+	//agk::SetVirtualResolution(1024, 768);
 	
 	// set background color in RGB (0-255)
 	agk::SetClearColor(63, 127, 255);
@@ -27,7 +27,12 @@ void app::Begin(void)
 
 int app::Loop(void)
 {
-	agk::Print("Yo!");
+	agk::Print(agk::GetDeviceWidth());
+	agk::Print(" x ");
+	agk::Print(agk::GetDeviceHeight());
+
+	menu.RefreshScreen();
+
 	agk::Sync();
 
 	return 0; // return 1 to close app
