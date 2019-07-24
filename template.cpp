@@ -11,8 +11,15 @@ void app::Begin(void)
 	// Alternative approach for the coordinate system in AGK, that set fixed resolution
 	// Default approach it's a percentage based system where 0,0 represents the
 	// top left corner and 100,100 the bottom right
-	//agk::SetVirtualResolution(1024, 768);
+	agk::SetVirtualResolution(960, 540);
 	
+	// This statements specifies the width to height ratio of the window or screen
+	// If this statement is omitted from a program using the percentage system, 
+	// other commands may not operate correctly
+	//
+	// ratio - is a floating point number giving the width to height ratio
+	// agk::SetDisplayAspect(16.0 / 9.0);
+
 	// set background color in RGB (0-255)
 	agk::SetClearColor(63, 127, 255);
 	
@@ -31,7 +38,7 @@ int app::Loop(void)
 	agk::Print(" x ");
 	agk::Print(agk::GetDeviceHeight());
 
-	menu.RefreshScreen();
+	menu.UpdateScreen();
 
 	agk::Sync();
 
