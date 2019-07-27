@@ -1,6 +1,7 @@
 #pragma once
 
 #include "agk.h"
+#include "util.h"
 
 // IN PRIVATE CLASS MEMBERS THE FIRST SYMBOL OF NAMES IS UNDERSCORE '_'
 
@@ -43,33 +44,25 @@ private:
 class Button
 {
 public:
-	Button() {};
-	Button(float x1, float y1, float x2, float y2)
+	float x1, y1, x2, y2; // only for drawing
+
+	Button()
 	{
-		_top_left.x = x1;
-		_top_left.y = y1;
-		_bottom_right.x = x2;
-		_bottom_right.y = y2;
-	}
+		x1 = 100.0f;
+		y1 = 100.0f;
+		x2 = 860.0f;
+		y2 = 440.0f;
+		log("Button()");
+	};
+
+	Button(float x1, float y1, float x2, float y2) :
+		x1(x1), y1(y1), x2(x2), y2(y2)
+	{
+		log("Button(float x1, float y1, float x2, float y2)");
+	};
 
 	void UpdateButton();
 
-private:
-	Coords _top_left, _bottom_right; // only for drawing
-	Sprite _sprite;
-};
-
-class Menu
-{
-public:
-	Button *button;
-	Menu()
-	{
-		button = new Button(270, 480, 415, 720);
-	};
-
-	void UpdateScreen();
-	
 private:
 
 };

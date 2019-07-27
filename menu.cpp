@@ -28,10 +28,9 @@ void Button::UpdateButton()
 	int blue = agk::MakeColor(0, 0, 255);
 	int middle = agk::MakeColor(127, 127, 127);
 
-	agk::DrawBox(_top_left.x, _top_left.y, _bottom_right.x, _bottom_right.y, red, green, blue, middle, true);
-}
-
-void Menu::UpdateScreen()
-{
-	button->UpdateButton();
+	agk::DrawBox(x1, y1, x2, y2, red, green, blue, middle, true);
+	agk::Print(x1);
+	agk::Print(y1);
+	agk::Print(x2);
+	agk::Print(y2);
 }

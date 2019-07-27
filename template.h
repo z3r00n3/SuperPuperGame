@@ -18,10 +18,20 @@
 class app
 {
 public:
-	Menu menu;
-	
+	//Button button = Button(100.0f, 100.0f, 860.0f, 440.0f);
+	Button *button;
 // constructor
-	app() { memset(this, 0, sizeof(app)); }
+	//app() { memset(this, 0, sizeof(app)); }
+	app()
+	{
+		button = new Button(100.0f, 100.0f, 860.0f, 440.0f);
+		log("app()");
+	}
+	~app()
+	{
+		delete(button);
+	}
+
 
 	// main app functions - mike to experiment with a derived class for this..
 	void Begin(void);

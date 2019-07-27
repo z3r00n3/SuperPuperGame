@@ -38,7 +38,13 @@ int app::Loop(void)
 	agk::Print(" x ");
 	agk::Print(agk::GetDeviceHeight());
 
-	menu.UpdateScreen();
+	button->UpdateButton();
+
+	agk::Print("\n");
+	agk::Print(button->x1);
+	agk::Print(button->y1);
+	agk::Print(button->x2);
+	agk::Print(button->y2);
 
 	agk::Sync();
 
