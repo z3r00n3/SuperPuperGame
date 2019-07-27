@@ -21,7 +21,7 @@ void Sprite::SetSpritePositionByOffset(float x, float y)
 	_position.y = y;
 }
 
-void Button::UpdateButton()
+void Button::Update()
 {
 	int red = agk::MakeColor(255, 0, 0);
 	int green = agk::MakeColor(0, 255, 0);
@@ -29,8 +29,10 @@ void Button::UpdateButton()
 	int middle = agk::MakeColor(127, 127, 127);
 
 	agk::DrawBox(x1, y1, x2, y2, red, green, blue, middle, true);
-	agk::Print(x1);
-	agk::Print(y1);
-	agk::Print(x2);
-	agk::Print(y2);
+}
+
+void Menu::Update()
+{
+	for (int i = 0; i < size; i++)
+		btn[i]->Update();
 }

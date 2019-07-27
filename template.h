@@ -19,17 +19,18 @@ class app
 {
 public:
 	//Button button = Button(100.0f, 100.0f, 860.0f, 440.0f);
-	Button *button;
+	//Button *button;
+	Menu menu = Menu(3);
+
 // constructor
 	//app() { memset(this, 0, sizeof(app)); }
 	app()
 	{
-		button = new Button(100.0f, 100.0f, 860.0f, 440.0f);
-		log("app()");
+		//button = new Button(100.0f, 100.0f, 860.0f, 440.0f);
 	}
 	~app()
 	{
-		delete(button);
+		//delete(button);
 	}
 
 

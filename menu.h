@@ -46,23 +46,38 @@ class Button
 public:
 	float x1, y1, x2, y2; // only for drawing
 
-	Button()
-	{
-		x1 = 100.0f;
-		y1 = 100.0f;
-		x2 = 860.0f;
-		y2 = 440.0f;
-		log("Button()");
-	};
-
+	Button() {};
 	Button(float x1, float y1, float x2, float y2) :
 		x1(x1), y1(y1), x2(x2), y2(y2)
-	{
-		log("Button(float x1, float y1, float x2, float y2)");
-	};
+	{};
 
-	void UpdateButton();
+	void Update();
 
 private:
+
+};
+
+class Menu
+{
+public:
+	Menu(size_t size) :
+		size(size)
+	{
+		btn = new Button *[size];
+		for (int i = 0; i < size; i++)
+			btn[i] = new Button(330, 95 * (i + 1), 630, 95 * (i + 1) + 100);
+	}
+	~Menu()
+	{
+		for (int i = 0; i < size; i++)
+			delete btn[i];
+		delete btn;
+	}
+
+	void Update();
+
+private:
+	Button **btn;
+	size_t size;
 
 };
