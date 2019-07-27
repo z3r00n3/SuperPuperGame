@@ -44,40 +44,43 @@ private:
 class Button
 {
 public:
-	float x1, y1, x2, y2; // only for drawing
 
 	Button() {};
-	Button(float x1, float y1, float x2, float y2) :
-		x1(x1), y1(y1), x2(x2), y2(y2)
+	Button(float x1, float y1, float x2, float y2, bool _focused = false) :
+		x1(x1), y1(y1), x2(x2), y2(y2), _focused(_focused)
 	{};
 
 	void Update();
 
 private:
+	float x1, y1, x2, y2; // only for drawing
+
+	bool _focused;
 
 };
 
 class Menu
 {
 public:
-	Menu(size_t size) :
-		size(size)
+	Menu(size_t _size, int _active_item) :
+		_size(_size), _active_item(_active_item)
 	{
-		btn = new Button *[size];
-		for (int i = 0; i < size; i++)
-			btn[i] = new Button(330, 95 * (i + 1), 630, 95 * (i + 1) + 100);
+		_btn = new Button *[_size];
+		for (int i = 0; i < _size; i++)
+			_btn[i] = new Button(330, 95 * (i + 1) + i * 30, 630, 95 * (i + 1) + 100 + i * 30, (i == _active_item) ? true : false);
 	}
 	~Menu()
 	{
-		for (int i = 0; i < size; i++)
-			delete btn[i];
-		delete btn;
+		for (int i = 0; i < _size; i++)
+			delete _btn[i];
+		delete _btn;
 	}
 
 	void Update();
 
 private:
-	Button **btn;
-	size_t size;
+	Button **_btn;
+	size_t _size;
+	int _active_item;
 
 };

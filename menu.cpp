@@ -28,11 +28,11 @@ void Button::Update()
 	int blue = agk::MakeColor(0, 0, 255);
 	int middle = agk::MakeColor(127, 127, 127);
 
-	agk::DrawBox(x1, y1, x2, y2, red, green, blue, middle, true);
+	agk::DrawBox(x1, y1, x2, y2, red, green, blue, middle, _focused ? false : true);
 }
 
 void Menu::Update()
 {
-	for (int i = 0; i < size; i++)
-		btn[i]->Update();
+	for (int i = 0; i < _size; i++)
+		_btn[i]->Update();
 }
