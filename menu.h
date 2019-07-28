@@ -77,6 +77,7 @@ public:
 	}
 
 	void Update();
+	void ChangeFocusButton(Keys key);
 
 private:
 	Button **_btn;

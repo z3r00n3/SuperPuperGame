@@ -4,6 +4,7 @@
 // Link to GDK libraries
 #include "AGK.h"
 #include "menu.h"
+#include "util.h"
 
 #define DEVICE_WIDTH 960
 #define DEVICE_HEIGHT 540

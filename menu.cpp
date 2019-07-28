@@ -36,3 +36,14 @@ void Menu::Update()
 	for (int i = 0; i < _size; i++)
 		_btn[i]->Update();
 }
+
+void Menu::ChangeFocusButton(Keys key)
+{
+	switch (key)
+	{
+	case UP:
+		break;
+	case DOWN:
+		break;
+	}
+}
