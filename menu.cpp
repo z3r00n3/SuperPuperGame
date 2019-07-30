@@ -28,13 +28,18 @@ void Button::Update()
 	int blue = agk::MakeColor(0, 0, 255);
 	int middle = agk::MakeColor(127, 127, 127);
 
-	agk::DrawBox(x1, y1, x2, y2, red, green, blue, middle, _focused ? false : true);
+	agk::DrawBox(x1, y1, x2, y2, red, green, blue, middle, _focus ? false : true);
+}
+
+void Button::SetFocus(bool focus)
+{
+	_focus = focus;
 }
 
 void Menu::Update()
 {
 	for (int i = 0; i < _size; i++)
-		_btn[i]->Update();
+		_menu[i]->Update();
 }
 
 void Menu::ChangeFocusButton(Keys key)
@@ -42,8 +47,32 @@ void Menu::ChangeFocusButton(Keys key)
 	switch (key)
 	{
 	case UP:
+		if (_active_item > 0)
+		{
+			_menu[_active_item]->SetFocus(false);
+			_active_item--;
+			_menu[_active_item]->SetFocus(true);
+		}
+		else
+		{
+			_menu[_active_item]->SetFocus(false);
+			_active_item = _size - 1;
+			_menu[_active_item]->SetFocus(true);
+		}
 		break;
 	case DOWN:
+		if (_active_item < _size - 1)
+		{
+			_menu[_active_item]->SetFocus(false);
+			_active_item++;
+			_menu[_active_item]->SetFocus(true);
+		}
+		else
+		{
+			_menu[_active_item]->SetFocus(false);
+			_active_item = 0;
+			_menu[_active_item]->SetFocus(true);
+		}
 		break;
 	}
 }

@@ -1,5 +1,6 @@
 // Includes
 #include "template.h"
+#include "util.h"
 
 // Namespace
 using namespace AGK;
@@ -39,6 +40,11 @@ int app::Loop(void)
 	agk::Print(agk::GetDeviceHeight());
 
 	menu.Update();
+
+	if (agk::GetRawKeyPressed(UP))
+		menu.ChangeFocusButton(UP);
+	if (agk::GetRawKeyPressed(DOWN))
+		menu.ChangeFocusButton(DOWN);
 
 	agk::Sync();
 

@@ -46,16 +46,17 @@ class Button
 public:
 
 	Button() {};
-	Button(float x1, float y1, float x2, float y2, bool _focused = false) :
-		x1(x1), y1(y1), x2(x2), y2(y2), _focused(_focused)
+	Button(float x1, float y1, float x2, float y2, bool _focus = false) :
+		x1(x1), y1(y1), x2(x2), y2(y2), _focus(_focus)
 	{};
 
 	void Update();
+	void SetFocus(bool focus);
 
 private:
 	float x1, y1, x2, y2; // only for drawing
 
-	bool _focused;
+	bool _focus;
 
 };
 
@@ -65,22 +66,22 @@ public:
 	Menu(size_t _size, int _active_item) :
 		_size(_size), _active_item(_active_item)
 	{
-		_btn = new Button *[_size];
+		_menu = new Button *[_size];
 		for (int i = 0; i < _size; i++)
-			_btn[i] = new Button(330, 95 * (i + 1) + i * 30, 630, 95 * (i + 1) + 100 + i * 30, (i == _active_item) ? true : false);
+			_menu[i] = new Button(330, 95 * (i + 1) + i * 30, 630, 95 * (i + 1) + 100 + i * 30, (i == _active_item) ? true : false);
 	}
 	~Menu()
 	{
 		for (int i = 0; i < _size; i++)
-			delete _btn[i];
-		delete _btn;
+			delete _menu[i];
+		delete _menu;
 	}
 
 	void Update();
 	void ChangeFocusButton(Keys key);
 
 private:
-	Button **_btn;
+	Button **_menu;
 	size_t _size;
 	int _active_item;
 
