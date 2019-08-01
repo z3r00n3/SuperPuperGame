@@ -37,22 +37,24 @@ public:
 	}*/
 
 	// Setters
-	// void SetPosition(float x, float y);
+	//void SetPosition(float x, float y);
 	void SetOffset(float x, float y);
 	void SetPositionByOffset(float x, float y);
-	// void SetWidth(...);
-	// void SetHeight(...);
-	// void SetImage(...);
+	//void SetWidth(...);
+	//void SetHeight(...);
+	//void SetImage(...);
 	
 	// Getters
-	// float GetWidth();
-	// float GetHeight();
-	// Coords GetPosition();
-	// Coords GetPositionByOffset();
-	// int GetImageID();
-	// int GetID();
+	float GetX();
+	float GetY();
+	float GetWidth();
+	float GetHeight();
+	//Coords GetPosition();
+	//Coords GetPositionByOffset();
+	//int GetImageID();
+	//int GetID();
 
-	// Other
+	// Management
 	void Initialize();
 	void Delete();
 	void DrawBounds(bool fill);
@@ -78,14 +80,14 @@ public:
 	}
 
 	// Setters
-	// void SetPosition(float x, float y);
-	// void SetWidth(float width);
-	// void SetHeight(float height);
+	void SetPosition(float x, float y);
+	//void SetWidth(float width);
+	//void SetHeight(float height);
 	void SetFocus(bool focus);
 	
 	// Getters
 	
-	// Other
+	// Management
 	void Initialize();
 	void Delete();
 	void Update();
@@ -93,7 +95,6 @@ public:
 private:
 	Sprite *_sprite;
 	bool _focus;
-
 };
 
 class Menu

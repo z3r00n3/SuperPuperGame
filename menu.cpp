@@ -29,22 +29,32 @@ void Sprite::SetPositionByOffset(float x, float y)
 
 // GETTERS
 
-//float Sprite::GetWidth()
-//{
-//	return _width;
-//}
-//
-//float Sprite::GetHeight()
-//{
-//	return _height;
-//}
+float Sprite::GetX()
+{
+	return _position.x;
+}
 
-// OTHER
+float Sprite::GetY()
+{
+	return _position.y;
+}
+
+float Sprite::GetWidth()
+{
+	return _width;
+}
+
+float Sprite::GetHeight()
+{
+	return _height;
+}
+
+// MANAGEMENT
 
 void Sprite::Initialize()
 {
 	_id = agk::CreateSprite(_img_id);
-	agk::SetSpritePosition(_id, _position.x - _width / 2, _position.y - _height / 2);
+	agk::SetSpritePosition(_id, _position.x, _position.y);
 	agk::SetSpriteSize(_id, _width, _height);
 }
 
@@ -55,9 +65,9 @@ void Sprite::Delete()
 
 void Sprite::DrawBounds(bool fill)
 {
-	int red = agk::MakeColor(255, 0, 0);
-	int green = agk::MakeColor(0, 255, 0);
-	int blue = agk::MakeColor(0, 0, 255);
+	int red    = agk::MakeColor(255, 0, 0);
+	int green  = agk::MakeColor(0, 255, 0);
+	int blue   = agk::MakeColor(0, 0, 255);
 	int middle = agk::MakeColor(127, 127, 127);
 
 	agk::DrawBox(_position.x, _position.y, _position.x + _width, _position.y + _height, red, green, blue, middle, fill);
@@ -69,24 +79,24 @@ void Sprite::DrawBounds(bool fill)
 
 // SETTERS
 
-//void Button::SetPosition(float x, float y)
-//{
-//	_sprite.SetOffset(_sprite.GetWidth() / 2, _sprite.GetHeight() / 2);
-//	_sprite.SetPositionByOffset(x, y);
-//}
-
-
+void Button::SetPosition(float x, float y)
+{
+	_sprite->SetOffset(_sprite->GetWidth() / 2, _sprite->GetHeight() / 2);
+	_sprite->SetPositionByOffset(x, y);
+}
 
 void Button::SetFocus(bool focus)
 {
 	_focus = focus;
 }
 
-// OTHER
+// MANAGEMENT
 
 void Button::Initialize()
 {
 	_sprite->Initialize();
+
+	SetPosition(_sprite->GetX(), _sprite->GetY());
 }
 
 void Button::Delete()
