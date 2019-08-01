@@ -41,6 +41,18 @@ void Sprite::SetPositionByOffset(float x, float y)
 
 // OTHER
 
+void Sprite::Initialize()
+{
+	_id = agk::CreateSprite(_img_id);
+	agk::SetSpritePosition(_id, _position.x - _width / 2, _position.y - _height / 2);
+	agk::SetSpriteSize(_id, _width, _height);
+}
+
+void Sprite::Delete()
+{
+	agk::DeleteSprite(_id);
+}
+
 void Sprite::DrawBounds(bool fill)
 {
 	int red = agk::MakeColor(255, 0, 0);
@@ -63,12 +75,24 @@ void Sprite::DrawBounds(bool fill)
 //	_sprite.SetPositionByOffset(x, y);
 //}
 
+
+
 void Button::SetFocus(bool focus)
 {
 	_focus = focus;
 }
 
 // OTHER
+
+void Button::Initialize()
+{
+	_sprite->Initialize();
+}
+
+void Button::Delete()
+{
+	_sprite->Delete();
+}
 
 void Button::Update()
 {
@@ -78,6 +102,18 @@ void Button::Update()
 ///////////////////////////////////////////////////////////////////////////////
 // MENU
 ///////////////////////////////////////////////////////////////////////////////
+
+void Menu::Initialize()
+{
+	for (int i = 0; i < _size; i++)
+		_menu[i]->Initialize();
+}
+
+void Menu::Delete()
+{
+	for (int i = 0; i < _size; i++)
+		_menu[i]->Delete();
+}
 
 void Menu::Update()
 {

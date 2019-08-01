@@ -19,16 +19,13 @@ class Sprite
 public:
 	Sprite(float x, float y, float width, float height)
 	{
-		_img_id = 0; // image id is 0 for have a blank sprite
-		_id = agk::CreateSprite(_img_id);
+		_img_id = NULL; // image id is NULL for have a blank sprite
 
-		agk::SetSpritePosition(_id, x, y);
 		_position.x = x;
-		_position.y = y;
+		_position.y = y; 
 		
-		agk::SetSpriteSize(_id, width, height);
-		this->_width = width;
-		this->_height = height;
+		_width = width;
+		_height = height;
 	}
 
 	/*Sprite(Sprite const &obj)
@@ -38,11 +35,6 @@ public:
 		_width = obj._width;
 		_height = obj._height;
 	}*/
-
-	~Sprite()
-	{
-		agk::DeleteSprite(_id);
-	}
 
 	// Setters
 	// void SetPosition(float x, float y);
@@ -61,11 +53,13 @@ public:
 	// int GetID();
 
 	// Other
+	void Initialize();
+	void Delete();
 	void DrawBounds(bool fill);
 
 private:
-	int _id;
-	int _img_id;
+	unsigned int _id;
+	unsigned int _img_id;
 	float _width, _height;
 	Coords _position;
 	// Coords _offset;
@@ -92,6 +86,8 @@ public:
 	// Getters
 	
 	// Other
+	void Initialize();
+	void Delete();
 	void Update();
 
 private:
@@ -107,7 +103,7 @@ public:
 		: _size(size), _menu(new Button *[_size]), _active_item(active_item)
 	{
 		for (int i = 0; i < _size; i++)
-			_menu[i] = new Button(480.0, 270.0, 300.0, 100.0, (i == _active_item) ? true : false);
+			_menu[i] = new Button(480.0, 110.0 + 160 * i, 300.0, 100.0, (i == _active_item) ? true : false);
 	}
 
 	~Menu()
@@ -117,6 +113,8 @@ public:
 		delete _menu;
 	}
 
+	void Initialize();
+	void Delete();
 	void Update();
 	void ChangeFocusButton(Keys key);
 
@@ -124,5 +122,4 @@ private:
 	size_t _size;
 	Button **_menu;
 	int _active_item;
-
 };

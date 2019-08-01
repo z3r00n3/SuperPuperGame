@@ -19,20 +19,12 @@
 class app
 {
 public:
-	//Button button = Button(100.0f, 100.0f, 860.0f, 440.0f);
-	//Button *button;
 	Menu menu = Menu(3, 0);
 
 // constructor
 	//app() { memset(this, 0, sizeof(app)); }
-	app()
-	{
-		//button = new Button(100.0f, 100.0f, 860.0f, 440.0f);
-	}
-	~app()
-	{
-		//delete(button);
-	}
+	app() { ; }
+	~app() { ; }
 
 
 	// main app functions - mike to experiment with a derived class for this..

@@ -31,14 +31,12 @@ void app::Begin(void)
 	
 	// 
 	agk::SetScissor(0, 0, 0, 0);
+
+	menu.Initialize();
 }
 
 int app::Loop(void)
 {
-	agk::Print(agk::GetDeviceWidth());
-	agk::Print(" x ");
-	agk::Print(agk::GetDeviceHeight());
-
 	menu.Update();
 
 	if (agk::GetRawKeyPressed(UP))
@@ -54,5 +52,5 @@ int app::Loop(void)
 
 void app::End(void)
 {
-
+	menu.Delete();
 }
