@@ -7,9 +7,6 @@
 //                                                                           //
 // In private class members the first symbol of names is underscore '_'      //
 //                                                                           //
-// Constructor's parameter's names must have same names like private members //
-// that they initialising                                                    //
-//                                                                           //
 ///////////////////////////////////////////////////////////////////////////////
 
 struct Coords
@@ -20,18 +17,28 @@ struct Coords
 class Sprite
 {
 public:
-	Sprite(float _x, float _y, float _width, float _height)
+	Sprite(float x, float y, float width, float height)
 	{
-		_id = agk::CreateSprite(NULL); // image id is NULL for have a blank sprite
+		_img_id = 0; // image id is 0 for have a blank sprite
+		_id = agk::CreateSprite(_img_id);
+
+		agk::SetSpritePosition(_id, x, y);
+		_position.x = x;
+		_position.y = y;
 		
-		agk::SetSpritePosition(_id, _x, _y);
-		_position.x = _x;
-		_position.y = _y;
-		
-		agk::SetSpriteSize(_id, _width, _height);
-		this->_width = _width;
-		this->_height = _height;
+		agk::SetSpriteSize(_id, width, height);
+		this->_width = width;
+		this->_height = height;
 	}
+
+	/*Sprite(Sprite const &obj)
+	{
+		_position.x = obj._position.x;
+		_position.y = obj._position.y;
+		_width = obj._width;
+		_height = obj._height;
+	}*/
+
 	~Sprite()
 	{
 		agk::DeleteSprite(_id);
@@ -58,7 +65,7 @@ public:
 
 private:
 	int _id;
-	// int _img_id;
+	int _img_id;
 	float _width, _height;
 	Coords _position;
 	// Coords _offset;
@@ -67,10 +74,13 @@ private:
 class Button
 {
 public:
-
 	Button(float x, float y, float width, float height, bool focus)
+		: _sprite(new Sprite(x, y, width, height)), _focus(focus)
+	{};
+
+	~Button()
 	{
-		_sprite = Sprite();
+		delete _sprite;
 	}
 
 	// Setters
@@ -85,7 +95,7 @@ public:
 	void Update();
 
 private:
-	Sprite _sprite;
+	Sprite *_sprite;
 	bool _focus;
 
 };
@@ -93,13 +103,13 @@ private:
 class Menu
 {
 public:
-	Menu(size_t _size, int _active_item) :
-		_size(_size), _active_item(_active_item)
+	Menu(size_t size, int active_item)
+		: _size(size), _menu(new Button *[_size]), _active_item(active_item)
 	{
-		_menu = new Button *[_size];
 		for (int i = 0; i < _size; i++)
-			_menu[i] = new Button(330, 95 * (i + 1) + i * 30, 630, 95 * (i + 1) + 100 + i * 30, (i == _active_item) ? true : false);
+			_menu[i] = new Button(480.0, 270.0, 300.0, 100.0, (i == _active_item) ? true : false);
 	}
+
 	~Menu()
 	{
 		for (int i = 0; i < _size; i++)
@@ -111,8 +121,8 @@ public:
 	void ChangeFocusButton(Keys key);
 
 private:
-	Button **_menu;
 	size_t _size;
+	Button **_menu;
 	int _active_item;
 
 };

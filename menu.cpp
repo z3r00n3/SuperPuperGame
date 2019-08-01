@@ -72,7 +72,7 @@ void Button::SetFocus(bool focus)
 
 void Button::Update()
 {
-	_sprite.DrawBounds(_focus ? true : false);
+	_sprite->DrawBounds(_focus ? true : false);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -99,7 +99,7 @@ void Menu::ChangeFocusButton(Keys key)
 		else
 		{
 			_menu[_active_item]->SetFocus(false);
-			_active_item = _size - 1;
+			_active_item = static_cast<int>(_size) - 1;
 			_menu[_active_item]->SetFocus(true);
 		}
 		break;
@@ -116,6 +116,8 @@ void Menu::ChangeFocusButton(Keys key)
 			_active_item = 0;
 			_menu[_active_item]->SetFocus(true);
 		}
+		break;
+	default:
 		break;
 	}
 }
