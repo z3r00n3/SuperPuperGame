@@ -4,6 +4,8 @@
 #include "util.h"
 
 // IN PRIVATE CLASS MEMBERS THE FIRST SYMBOL OF NAMES IS UNDERSCORE '_'
+// Constructor's parameter's names must have same names like private members
+// that they initialising
 
 struct Coords
 {
@@ -13,49 +15,72 @@ struct Coords
 class Sprite
 {
 public:
-	Sprite() :
-		_id(_id), _img_id(_img_id), _width(_width), _height(_height)
-	{}
+	Sprite(float _x, float _y, float _width, float _height)
+	{
+		_id = agk::CreateSprite(NULL); // image id is NULL for have a blank sprite
+		
+		agk::SetSpritePosition(_id, _x, _y);
+		_position.x = _x;
+		_position.y = _y;
+		
+		agk::SetSpriteSize(_id, _width, _height);
+		this->_width = _width;
+		this->_height = _height;
+	}
+	~Sprite()
+	{
+		agk::DeleteSprite(_id);
+	}
 
 	// Setters
-	void SetSpritePosition(float x, float y);
-	void SetSpriteOffset(float x, float y);
-	void SetSpritePositionByOffset(float x, float y);
-	// void SetSpriteWidth(...);
-	// void SetSpriteHeight(...);
-	// void SetSpriteImage(...);
+	// void SetPosition(float x, float y);
+	void SetOffset(float x, float y);
+	void SetPositionByOffset(float x, float y);
+	// void SetWidth(...);
+	// void SetHeight(...);
+	// void SetImage(...);
 	
 	// Getters
-	// Coords GetSpritePosition();
-	// Coords GetSpritePositionByOffset();
-	// float GetSpriteWidth();
-	// float GetSpriteHeight();
+	// float GetWidth();
+	// float GetHeight();
+	// Coords GetPosition();
+	// Coords GetPositionByOffset();
 	// int GetImageID();
 	// int GetID();
 
+	// Other
+	void DrawBounds(bool fill);
+
 private:
 	int _id;
-	int _img_id;
+	// int _img_id;
 	float _width, _height;
 	Coords _position;
-	//???Coords _offset;
+	// Coords _offset;
 };
 
 class Button
 {
 public:
 
-	Button() {};
-	Button(float x1, float y1, float x2, float y2, bool _focus = false) :
-		x1(x1), y1(y1), x2(x2), y2(y2), _focus(_focus)
-	{};
+	Button(float x, float y, float width, float height, bool focus)
+	{
+		_sprite = Sprite();
+	}
 
-	void Update();
+	// Setters
+	// void SetPosition(float x, float y);
+	// void SetWidth(float width);
+	// void SetHeight(float height);
 	void SetFocus(bool focus);
+	
+	// Getters
+	
+	// Other
+	void Update();
 
 private:
-	float x1, y1, x2, y2; // only for drawing
-
+	Sprite _sprite;
 	bool _focus;
 
 };
