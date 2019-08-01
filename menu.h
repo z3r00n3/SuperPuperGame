@@ -3,9 +3,14 @@
 #include "agk.h"
 #include "util.h"
 
-// IN PRIVATE CLASS MEMBERS THE FIRST SYMBOL OF NAMES IS UNDERSCORE '_'
-// Constructor's parameter's names must have same names like private members
-// that they initialising
+////-------------!!!-------------BEST PRACTICES------------!!!-------------////
+//                                                                           //
+// In private class members the first symbol of names is underscore '_'      //
+//                                                                           //
+// Constructor's parameter's names must have same names like private members //
+// that they initialising                                                    //
+//                                                                           //
+///////////////////////////////////////////////////////////////////////////////
 
 struct Coords
 {
