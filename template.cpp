@@ -32,6 +32,9 @@ void app::Begin(void)
 	// 
 	agk::SetScissor(0, 0, 0, 0);
 
+	//
+	agk::UseNewDefaultFonts(true);
+
 	menu.Initialize();
 }
 
@@ -52,5 +55,7 @@ int app::Loop(void)
 
 void app::End(void)
 {
-	menu.Delete();
+	agk::DeleteAllImages();
+	agk::DeleteAllSprites();
+	agk::DeleteAllText();
 }

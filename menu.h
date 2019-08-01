@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 #include "agk.h"
 #include "util.h"
 
@@ -56,7 +58,6 @@ public:
 
 	// Management
 	void Initialize();
-	void Delete();
 	void DrawBounds(bool fill);
 
 private:
@@ -65,6 +66,22 @@ private:
 	float _width, _height;
 	Coords _position;
 	// Coords _offset;
+};
+
+class Text
+{
+public:
+	// Setters
+
+	// Getters
+
+	// Management
+	void Initialize();
+
+private:
+	unsigned int _id;
+	std::string text;
+	Coords _position;
 };
 
 class Button
@@ -89,7 +106,6 @@ public:
 	
 	// Management
 	void Initialize();
-	void Delete();
 	void Update();
 
 private:
@@ -115,7 +131,6 @@ public:
 	}
 
 	void Initialize();
-	void Delete();
 	void Update();
 	void ChangeFocusButton(Keys key);
 

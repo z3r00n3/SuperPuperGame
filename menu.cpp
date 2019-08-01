@@ -58,11 +58,6 @@ void Sprite::Initialize()
 	agk::SetSpriteSize(_id, _width, _height);
 }
 
-void Sprite::Delete()
-{
-	agk::DeleteSprite(_id);
-}
-
 void Sprite::DrawBounds(bool fill)
 {
 	int red    = agk::MakeColor(255, 0, 0);
@@ -71,6 +66,21 @@ void Sprite::DrawBounds(bool fill)
 	int middle = agk::MakeColor(127, 127, 127);
 
 	agk::DrawBox(_position.x, _position.y, _position.x + _width, _position.y + _height, red, green, blue, middle, fill);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// TEXT
+///////////////////////////////////////////////////////////////////////////////
+
+// SETTERS
+
+// GETTERS
+
+// MANAGEMENT
+
+void Text::Initialize()
+{
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -99,11 +109,6 @@ void Button::Initialize()
 	SetPosition(_sprite->GetX(), _sprite->GetY());
 }
 
-void Button::Delete()
-{
-	_sprite->Delete();
-}
-
 void Button::Update()
 {
 	_sprite->DrawBounds(_focus ? true : false);
@@ -117,12 +122,6 @@ void Menu::Initialize()
 {
 	for (int i = 0; i < _size; i++)
 		_menu[i]->Initialize();
-}
-
-void Menu::Delete()
-{
-	for (int i = 0; i < _size; i++)
-		_menu[i]->Delete();
 }
 
 void Menu::Update()
@@ -167,3 +166,4 @@ void Menu::ChangeFocusButton(Keys key)
 		break;
 	}
 }
+
