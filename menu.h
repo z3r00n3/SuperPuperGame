@@ -42,6 +42,7 @@ public:
 	//void SetPosition(float x, float y);
 	void SetOffset(float x, float y);
 	void SetPositionByOffset(float x, float y);
+	void SetDepth(int depth);
 	//void SetWidth(...);
 	//void SetHeight(...);
 	//void SetImage(...);
@@ -72,15 +73,22 @@ class Text
 {
 public:
 	// Setters
+	void SetPosition(float x, float y);
+	void SetSize(float size);
+	void SetColor(unsigned int red, unsigned int green, unsigned int blue);
+	void SetDepth(int depth);
+	//void SetAlignment();
+	//void SetText();
 
 	// Getters
 
 	// Management
-	void Initialize();
+	void Initialize(std::string text, float size, float x, float y);
 
 private:
 	unsigned int _id;
-	std::string text;
+	std::string _text;
+	float _size;
 	Coords _position;
 };
 
@@ -105,11 +113,12 @@ public:
 	// Getters
 	
 	// Management
-	void Initialize();
+	void Initialize(std::string name, float text_size, float x, float y);
 	void Update();
 
 private:
 	Sprite *_sprite;
+	Text _text;
 	bool _focus;
 };
 

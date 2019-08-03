@@ -20,6 +20,7 @@ class app
 {
 public:
 	Menu menu = Menu(3, 0);
+	Text text;
 
 // constructor
 	//app() { memset(this, 0, sizeof(app)); }

@@ -27,6 +27,11 @@ void Sprite::SetPositionByOffset(float x, float y)
 	_position.y = agk::GetSpriteY(_id);
 }
 
+void Sprite::SetDepth(int depth)
+{
+	agk::SetSpriteDepth(_id, depth);
+}
+
 // GETTERS
 
 float Sprite::GetX()
@@ -54,8 +59,10 @@ float Sprite::GetHeight()
 void Sprite::Initialize()
 {
 	_id = agk::CreateSprite(_img_id);
+
 	agk::SetSpritePosition(_id, _position.x, _position.y);
 	agk::SetSpriteSize(_id, _width, _height);
+	SetDepth(20);
 }
 
 void Sprite::DrawBounds(bool fill)
@@ -74,13 +81,47 @@ void Sprite::DrawBounds(bool fill)
 
 // SETTERS
 
+void Text::SetPosition(float x, float y)
+{
+	agk::SetTextPosition(_id, x, y);
+
+	_position.x = x;
+	_position.y = y;
+}
+
+void Text::SetSize(float size)
+{
+	agk::SetTextSize(_id, size);
+
+	_size = size;
+}
+
+void Text::SetColor(unsigned int red, unsigned int green, unsigned int blue)
+{
+	agk::SetTextColor(_id, red, green, blue);
+}
+
+void Text::SetDepth(int depth)
+{
+	agk::SetTextDepth(_id, depth);
+}
+
 // GETTERS
 
 // MANAGEMENT
 
-void Text::Initialize()
+void Text::Initialize(std::string text, float size, float x, float y)
 {
+	_text = text;
+	_id = agk::CreateText(_text.c_str());
+	_size = size;
+	_position.x = x;
+	_position.y = y;
 
+	SetPosition(x, y);
+	SetSize(size);
+	SetColor(0, 0, 0);
+	SetDepth(0);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -102,9 +143,10 @@ void Button::SetFocus(bool focus)
 
 // MANAGEMENT
 
-void Button::Initialize()
+void Button::Initialize(std::string name, float text_size, float x, float y)
 {
 	_sprite->Initialize();
+	_text.Initialize(name, text_size, x, y);
 
 	SetPosition(_sprite->GetX(), _sprite->GetY());
 }
@@ -121,7 +163,7 @@ void Button::Update()
 void Menu::Initialize()
 {
 	for (int i = 0; i < _size; i++)
-		_menu[i]->Initialize();
+		_menu[i]->Initialize(std::string("button #") + std::to_string(i), 30, 600, 110 + 160 * i);
 }
 
 void Menu::Update()
