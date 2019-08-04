@@ -27,10 +27,10 @@ void Sprite::SetPositionByOffset(float x, float y)
 	_position.y = agk::GetSpriteY(_id);
 }
 
-void Sprite::SetDepth(int depth)
-{
-	agk::SetSpriteDepth(_id, depth);
-}
+//void Sprite::SetDepth(int depth)
+//{
+//	agk::SetSpriteDepth(_id, depth);
+//}
 
 // GETTERS
 
@@ -56,13 +56,19 @@ float Sprite::GetHeight()
 
 // MANAGEMENT
 
-void Sprite::Initialize()
+void Sprite::Initialize(float x, float y, float width, float height)
 {
+	_img_id = NULL; // image id is NULL for have a blank sprite
 	_id = agk::CreateSprite(_img_id);
 
-	agk::SetSpritePosition(_id, _position.x, _position.y);
-	agk::SetSpriteSize(_id, _width, _height);
-	SetDepth(20);
+	_position.x = x;
+	_position.y = y;
+
+	_width = width;
+	_height = height;
+
+	agk::SetSpritePosition(_id, x, y);
+	agk::SetSpriteSize(_id, width, height);
 }
 
 void Sprite::DrawBounds(bool fill)
@@ -101,10 +107,10 @@ void Text::SetColor(unsigned int red, unsigned int green, unsigned int blue)
 	agk::SetTextColor(_id, red, green, blue);
 }
 
-void Text::SetDepth(int depth)
-{
-	agk::SetTextDepth(_id, depth);
-}
+//void Text::SetDepth(int depth)
+//{
+//	agk::SetTextDepth(_id, depth);
+//}
 
 // GETTERS
 
@@ -121,7 +127,6 @@ void Text::Initialize(std::string text, float size, float x, float y)
 	SetPosition(x, y);
 	SetSize(size);
 	SetColor(0, 0, 0);
-	SetDepth(0);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -132,8 +137,8 @@ void Text::Initialize(std::string text, float size, float x, float y)
 
 void Button::SetPosition(float x, float y)
 {
-	_sprite->SetOffset(_sprite->GetWidth() / 2, _sprite->GetHeight() / 2);
-	_sprite->SetPositionByOffset(x, y);
+	_sprite.SetOffset(_sprite.GetWidth() / 2, _sprite.GetHeight() / 2);
+	_sprite.SetPositionByOffset(x, y);
 }
 
 void Button::SetFocus(bool focus)
@@ -143,27 +148,28 @@ void Button::SetFocus(bool focus)
 
 // MANAGEMENT
 
-void Button::Initialize(std::string name, float text_size, float x, float y)
+void Button::Initialize(float x, float y, float width, float height, std::string name, float text_size, bool focus)
 {
-	_sprite->Initialize();
+	_sprite.Initialize(x, y, width, height);
 	_text.Initialize(name, text_size, x, y);
 
-	SetPosition(_sprite->GetX(), _sprite->GetY());
+	SetPosition(_sprite.GetX(), _sprite.GetY());
 }
 
 void Button::Update()
 {
-	_sprite->DrawBounds(_focus ? true : false);
+	_sprite.DrawBounds(_focus ? true : false);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // MENU
 ///////////////////////////////////////////////////////////////////////////////
 
-void Menu::Initialize()
+void Menu::Initialize(size_t size, int active_item)
 {
-	for (int i = 0; i < _size; i++)
-		_menu[i]->Initialize(std::string("button #") + std::to_string(i), 30, 600, 110 + 160 * i);
+	_menu = new Button[3];
+//	for (int i = 0; i < _size; i++)
+//		_menu[i]->Initialize(std::string("button #") + std::to_string(i), 30, 600, 110 + 160 * i);
 }
 
 void Menu::Update()

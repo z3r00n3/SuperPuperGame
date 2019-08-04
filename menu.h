@@ -19,18 +19,8 @@ struct Coords
 class Sprite
 {
 public:
-	Sprite(float x, float y, float width, float height)
-	{
-		_img_id = NULL; // image id is NULL for have a blank sprite
-
-		_position.x = x;
-		_position.y = y; 
-		
-		_width = width;
-		_height = height;
-	}
-
-	/*Sprite(Sprite const &obj)
+	/* // Copy constructor
+	Sprite(Sprite const &obj)
 	{
 		_position.x = obj._position.x;
 		_position.y = obj._position.y;
@@ -42,7 +32,7 @@ public:
 	//void SetPosition(float x, float y);
 	void SetOffset(float x, float y);
 	void SetPositionByOffset(float x, float y);
-	void SetDepth(int depth);
+	//void SetDepth(int depth);
 	//void SetWidth(...);
 	//void SetHeight(...);
 	//void SetImage(...);
@@ -58,7 +48,7 @@ public:
 	//int GetID();
 
 	// Management
-	void Initialize();
+	void Initialize(float x, float y, float width, float height);
 	void DrawBounds(bool fill);
 
 private:
@@ -66,7 +56,6 @@ private:
 	unsigned int _img_id;
 	float _width, _height;
 	Coords _position;
-	// Coords _offset;
 };
 
 class Text
@@ -76,7 +65,7 @@ public:
 	void SetPosition(float x, float y);
 	void SetSize(float size);
 	void SetColor(unsigned int red, unsigned int green, unsigned int blue);
-	void SetDepth(int depth);
+	//void SetDepth(int depth);
 	//void SetAlignment();
 	//void SetText();
 
@@ -95,15 +84,6 @@ private:
 class Button
 {
 public:
-	Button(float x, float y, float width, float height, bool focus)
-		: _sprite(new Sprite(x, y, width, height)), _focus(focus)
-	{};
-
-	~Button()
-	{
-		delete _sprite;
-	}
-
 	// Setters
 	void SetPosition(float x, float y);
 	//void SetWidth(float width);
@@ -113,11 +93,11 @@ public:
 	// Getters
 	
 	// Management
-	void Initialize(std::string name, float text_size, float x, float y);
+	void Initialize(float x, float y, float width, float height, std::string name, float text_size, bool focus);
 	void Update();
 
 private:
-	Sprite *_sprite;
+	Sprite _sprite;
 	Text _text;
 	bool _focus;
 };
@@ -129,7 +109,10 @@ public:
 		: _size(size), _menu(new Button *[_size]), _active_item(active_item)
 	{
 		for (int i = 0; i < _size; i++)
-			_menu[i] = new Button(480.0, 110.0 + 160 * i, 300.0, 100.0, (i == _active_item) ? true : false);
+		{
+			_menu[i] = new Button;
+			_menu[i]->Initialize(480, 110 + 160 * i, 300, 100, std::string("Name #") + std::to_string(i), 30, i == _active_item ? true : false);
+		}
 	}
 
 	~Menu()
@@ -139,12 +122,12 @@ public:
 		delete _menu;
 	}
 
-	void Initialize();
+	void Initialize(size_t size, int active_item);
 	void Update();
 	void ChangeFocusButton(Keys key);
 
 private:
 	size_t _size;
-	Button **_menu;
+	Button *_menu;
 	int _active_item;
 };
