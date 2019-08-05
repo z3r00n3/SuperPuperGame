@@ -34,6 +34,11 @@ void Sprite::SetPositionByOffset(float x, float y)
 
 // GETTERS
 
+int Sprite::GetID()
+{
+	return _id;
+}
+
 float Sprite::GetX()
 {
 	return _position.x;
@@ -52,11 +57,6 @@ float Sprite::GetWidth()
 float Sprite::GetHeight()
 {
 	return _height;
-}
-
-int Sprite::GetID()
-{
-	return _id;
 }
 
 // MANAGEMENT
@@ -112,12 +112,22 @@ void Text::SetColor(unsigned int red, unsigned int green, unsigned int blue)
 	agk::SetTextColor(_id, red, green, blue);
 }
 
+void Text::SetAlignment(TextAlignment::TextAlignment alignment)
+{
+	agk::SetTextAlignment(_id, alignment);
+}
+
 //void Text::SetDepth(int depth)
 //{
 //	agk::SetTextDepth(_id, depth);
 //}
 
 // GETTERS
+
+int Text::GetID()
+{
+	return _id;
+}
 
 float Text::GetX()
 {
@@ -132,11 +142,6 @@ float Text::GetY()
 float Text::GetSize()
 {
 	return _size;
-}
-
-int Text::GetID()
-{
-	return _id;
 }
 
 std::string Text::GetText()
@@ -169,6 +174,8 @@ void Button::SetPosition(float x, float y)
 {
 	_sprite.SetOffset(_sprite.GetWidth() / 2, _sprite.GetHeight() / 2);
 	_sprite.SetPositionByOffset(x, y);
+
+	_text.SetPosition(x, y - agk::GetTextTotalHeight(_text.GetID()) / 2);
 }
 
 void Button::SetFocus(bool focus)
@@ -192,6 +199,7 @@ void Button::Initialize(float x, float y, float width, float height, std::string
 	_focus = focus;
 
 	SetPosition(_sprite.GetX(), _sprite.GetY());
+	_text.SetAlignment(TextAlignment::CENTER);
 }
 
 void Button::Update()
@@ -207,7 +215,7 @@ void Menu::Initialize(int size, int active_item)
 {
 	_menu = new Button[3];
 	for (int i = 0; i < size; i++)
-		_menu[i].Initialize(600, 110 + 160 * i, 300, 100, std::string("button #") + std::to_string(i), 30, i == _active_item ? true : false);
+		_menu[i].Initialize(480, 110 + 160 * i, 300, 100, std::string("button #") + std::to_string(i), 30, i == _active_item ? true : false);
 
 	_size = size;
 	_active_item = active_item;
@@ -219,11 +227,11 @@ void Menu::Update()
 		_menu[i].Update();
 }
 
-void Menu::ChangeFocusButton(Keys key)
+void Menu::ChangeFocusButton(Key::Key key)
 {
 	switch (key)
 	{
-	case UP:
+	case Key::UP:
 		if (_active_item > 0)
 		{
 			_menu[_active_item].SetFocus(false);
@@ -237,7 +245,7 @@ void Menu::ChangeFocusButton(Keys key)
 			_menu[_active_item].SetFocus(true);
 		}
 		break;
-	case DOWN:
+	case Key::DOWN:
 		if (_active_item < _size - 1)
 		{
 			_menu[_active_item].SetFocus(false);

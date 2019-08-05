@@ -42,10 +42,10 @@ int app::Loop(void)
 {
 	menu.Update();
 	
-	if (agk::GetRawKeyPressed(UP))
-		menu.ChangeFocusButton(UP);
-	if (agk::GetRawKeyPressed(DOWN))
-		menu.ChangeFocusButton(DOWN);
+	if (agk::GetRawKeyPressed(Key::UP))
+		menu.ChangeFocusButton(Key::UP);
+	if (agk::GetRawKeyPressed(Key::DOWN))
+		menu.ChangeFocusButton(Key::DOWN);
 
 	agk::Sync();
 

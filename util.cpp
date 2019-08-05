@@ -1,12 +1,11 @@
-#include "util.h"
-#include "fstream"
+#include <fstream>
 
-using namespace std;
+#include "util.h"
 
 void DbgLog(const char *str)
 {
-	 fstream fp;
-	 fp.open(DBG_FILE, fstream::app);
-	 fp << str << endl;
+	 std::fstream fp;
+	 fp.open(DBG_FILE, std::fstream::app);
+	 fp << str << std::endl;
 	 fp.close();
 }

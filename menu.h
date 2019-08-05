@@ -5,10 +5,10 @@
 #include "agk.h"
 #include "util.h"
 
-////-------------!!!-------------BEST PRACTICES------------!!!-------------////
-//                                                                           //
+////-------------!!!-------------BEST PRACTICE-------------!!!-------------////
 // In private class members the first symbol of names is underscore '_'      //
-//                                                                           //
+// This grants us fast understanding about private members when we're        //
+// reading/writing                                                           //
 ///////////////////////////////////////////////////////////////////////////////
 
 struct Coords
@@ -38,14 +38,14 @@ public:
 	//void SetImage(...);
 	
 	// Getters
+	//int GetImageID();
+	int GetID();
 	float GetX();
 	float GetY();
 	float GetWidth();
 	float GetHeight();
 	//Coords GetPosition();
 	//Coords GetPositionByOffset();
-	//int GetImageID();
-	int GetID();
 
 	// Management
 	void Initialize(float x, float y, float width, float height);
@@ -65,15 +65,15 @@ public:
 	void SetPosition(float x, float y);
 	void SetSize(float size);
 	void SetColor(unsigned int red, unsigned int green, unsigned int blue);
-	//void SetDepth(int depth);
-	//void SetAlignment();
+	void SetAlignment(TextAlignment::TextAlignment alignment);
 	//void SetText();
+	//void SetDepth(int depth);
 
 	// Getters
+	int GetID();
 	float GetX();
 	float GetY();
 	float GetSize();
-	int GetID();
 	std::string GetText();
 
 	// Management
@@ -118,7 +118,7 @@ public:
 
 	void Initialize(int size, int active_item);
 	void Update();
-	void ChangeFocusButton(Keys key);
+	void ChangeFocusButton(Key::Key key);
 
 private:
 	int _size;
