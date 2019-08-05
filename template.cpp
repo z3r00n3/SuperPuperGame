@@ -35,7 +35,7 @@ void app::Begin(void)
 	//
 	agk::UseNewDefaultFonts(true);
 
-	menu.Initialize();
+	menu.Initialize(3, 0);
 	text.Initialize("z3r0n3", 100, 0, 0);
 }
 

@@ -105,20 +105,8 @@ private:
 class Menu
 {
 public:
-	Menu(size_t size, int active_item)
-		: _size(size), _menu(new Button *[_size]), _active_item(active_item)
-	{
-		for (int i = 0; i < _size; i++)
-		{
-			_menu[i] = new Button;
-			_menu[i]->Initialize(480, 110 + 160 * i, 300, 100, std::string("Name #") + std::to_string(i), 30, i == _active_item ? true : false);
-		}
-	}
-
 	~Menu()
 	{
-		for (int i = 0; i < _size; i++)
-			delete _menu[i];
 		delete _menu;
 	}
 

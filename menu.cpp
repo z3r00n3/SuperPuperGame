@@ -168,14 +168,17 @@ void Button::Update()
 void Menu::Initialize(size_t size, int active_item)
 {
 	_menu = new Button[3];
-//	for (int i = 0; i < _size; i++)
-//		_menu[i]->Initialize(std::string("button #") + std::to_string(i), 30, 600, 110 + 160 * i);
+	for (int i = 0; i < _size; i++)
+		_menu[i].Initialize(600, 110 + 160 * i, 300, 100, std::string("button #") + std::to_string(i), 30, i == _active_item ? true : false);
+
+	_size = size;
+	_active_item = active_item;
 }
 
 void Menu::Update()
 {
 	for (int i = 0; i < _size; i++)
-		_menu[i]->Update();
+		_menu[i].Update();
 }
 
 void Menu::ChangeFocusButton(Keys key)
@@ -185,29 +188,29 @@ void Menu::ChangeFocusButton(Keys key)
 	case UP:
 		if (_active_item > 0)
 		{
-			_menu[_active_item]->SetFocus(false);
+			_menu[_active_item].SetFocus(false);
 			_active_item--;
-			_menu[_active_item]->SetFocus(true);
+			_menu[_active_item].SetFocus(true);
 		}
 		else
 		{
-			_menu[_active_item]->SetFocus(false);
+			_menu[_active_item].SetFocus(false);
 			_active_item = static_cast<int>(_size) - 1;
-			_menu[_active_item]->SetFocus(true);
+			_menu[_active_item].SetFocus(true);
 		}
 		break;
 	case DOWN:
 		if (_active_item < _size - 1)
 		{
-			_menu[_active_item]->SetFocus(false);
+			_menu[_active_item].SetFocus(false);
 			_active_item++;
-			_menu[_active_item]->SetFocus(true);
+			_menu[_active_item].SetFocus(true);
 		}
 		else
 		{
-			_menu[_active_item]->SetFocus(false);
+			_menu[_active_item].SetFocus(false);
 			_active_item = 0;
-			_menu[_active_item]->SetFocus(true);
+			_menu[_active_item].SetFocus(true);
 		}
 		break;
 	default:

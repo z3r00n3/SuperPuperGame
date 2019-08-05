@@ -19,7 +19,7 @@
 class app
 {
 public:
-	Menu menu = Menu(3, 0);
+	Menu menu;
 	Text text;
 
 // constructor
