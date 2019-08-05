@@ -54,6 +54,11 @@ float Sprite::GetHeight()
 	return _height;
 }
 
+int Sprite::GetID()
+{
+	return _id;
+}
+
 // MANAGEMENT
 
 void Sprite::Initialize(float x, float y, float width, float height)
@@ -114,9 +119,34 @@ void Text::SetColor(unsigned int red, unsigned int green, unsigned int blue)
 
 // GETTERS
 
+float Text::GetX()
+{
+	return _position.x;
+}
+
+float Text::GetY()
+{
+	return _position.y;
+}
+
+float Text::GetSize()
+{
+	return _size;
+}
+
+int Text::GetID()
+{
+	return _id;
+}
+
+std::string Text::GetText()
+{
+	return _text;
+}
+
 // MANAGEMENT
 
-void Text::Initialize(std::string text, float size, float x, float y)
+void Text::Initialize(float x, float y, std::string text, float size)
 {
 	_text = text;
 	_id = agk::CreateText(_text.c_str());
@@ -146,29 +176,37 @@ void Button::SetFocus(bool focus)
 	_focus = focus;
 }
 
+// GETTERS
+
+bool Button::GetFocus()
+{
+	return false;
+}
+
 // MANAGEMENT
 
 void Button::Initialize(float x, float y, float width, float height, std::string name, float text_size, bool focus)
 {
 	_sprite.Initialize(x, y, width, height);
-	_text.Initialize(name, text_size, x, y);
+	_text.Initialize(x, y, name, text_size);
+	_focus = focus;
 
 	SetPosition(_sprite.GetX(), _sprite.GetY());
 }
 
 void Button::Update()
-{
-	_sprite.DrawBounds(_focus ? true : false);
+{	
+	_sprite.DrawBounds(_focus);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // MENU
 ///////////////////////////////////////////////////////////////////////////////
 
-void Menu::Initialize(size_t size, int active_item)
+void Menu::Initialize(int size, int active_item)
 {
 	_menu = new Button[3];
-	for (int i = 0; i < _size; i++)
+	for (int i = 0; i < size; i++)
 		_menu[i].Initialize(600, 110 + 160 * i, 300, 100, std::string("button #") + std::to_string(i), 30, i == _active_item ? true : false);
 
 	_size = size;
@@ -195,7 +233,7 @@ void Menu::ChangeFocusButton(Keys key)
 		else
 		{
 			_menu[_active_item].SetFocus(false);
-			_active_item = static_cast<int>(_size) - 1;
+			_active_item = _size - 1;
 			_menu[_active_item].SetFocus(true);
 		}
 		break;

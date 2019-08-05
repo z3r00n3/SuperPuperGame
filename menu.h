@@ -45,7 +45,7 @@ public:
 	//Coords GetPosition();
 	//Coords GetPositionByOffset();
 	//int GetImageID();
-	//int GetID();
+	int GetID();
 
 	// Management
 	void Initialize(float x, float y, float width, float height);
@@ -70,9 +70,14 @@ public:
 	//void SetText();
 
 	// Getters
+	float GetX();
+	float GetY();
+	float GetSize();
+	int GetID();
+	std::string GetText();
 
 	// Management
-	void Initialize(std::string text, float size, float x, float y);
+	void Initialize(float x, float y, std::string text, float size);
 
 private:
 	unsigned int _id;
@@ -91,6 +96,7 @@ public:
 	void SetFocus(bool focus);
 	
 	// Getters
+	bool GetFocus();
 	
 	// Management
 	void Initialize(float x, float y, float width, float height, std::string name, float text_size, bool focus);
@@ -107,15 +113,15 @@ class Menu
 public:
 	~Menu()
 	{
-		delete _menu;
+		delete [] _menu;
 	}
 
-	void Initialize(size_t size, int active_item);
+	void Initialize(int size, int active_item);
 	void Update();
 	void ChangeFocusButton(Keys key);
 
 private:
-	size_t _size;
+	int _size;
 	Button *_menu;
 	int _active_item;
 };

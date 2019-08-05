@@ -3,10 +3,10 @@
 
 using namespace std;
 
-void log(char *str)
+void DbgLog(const char *str)
 {
 	 fstream fp;
-	 fp.open("dbg.txt", fstream::app);
+	 fp.open(DBG_FILE, fstream::app);
 	 fp << str << endl;
 	 fp.close();
 }

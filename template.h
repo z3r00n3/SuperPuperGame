@@ -20,9 +20,8 @@ class app
 {
 public:
 	Menu menu;
-	Text text;
 
-// constructor
+	// constructor
 	//app() { memset(this, 0, sizeof(app)); }
 	app() { ; }
 	~app() { ; }

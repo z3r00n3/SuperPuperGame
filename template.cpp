@@ -36,13 +36,12 @@ void app::Begin(void)
 	agk::UseNewDefaultFonts(true);
 
 	menu.Initialize(3, 0);
-	text.Initialize("z3r0n3", 100, 0, 0);
 }
 
 int app::Loop(void)
 {
 	menu.Update();
-
+	
 	if (agk::GetRawKeyPressed(UP))
 		menu.ChangeFocusButton(UP);
 	if (agk::GetRawKeyPressed(DOWN))

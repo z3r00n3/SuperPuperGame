@@ -1,5 +1,7 @@
 #pragma once
 
+#define DBG_FILE "../dbg.txt"
+
 enum Keys
 {
 	LEFT = 37,
@@ -8,4 +10,4 @@ enum Keys
 	DOWN = 40,
 };
 
-void log(char *str);
+void DbgLog(const char *str);
