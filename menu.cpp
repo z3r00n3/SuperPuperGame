@@ -32,6 +32,16 @@ void Sprite::SetPositionByOffset(float x, float y)
 //	agk::SetSpriteDepth(_id, depth);
 //}
 
+void Sprite::SetImage(int img_id)
+{
+	agk::SetSpriteImage(_id, img_id);
+}
+
+void Sprite::SetVisible(bool visible)
+{
+	agk::SetSpriteVisible(_id, visible);
+}
+
 // GETTERS
 
 int Sprite::GetID()
@@ -61,18 +71,16 @@ float Sprite::GetHeight()
 
 // MANAGEMENT
 
-void Sprite::Initialize(float x, float y, float width, float height)
+void Sprite::Initialize(int img_id, float x, float y, float width, float height)
 {
-	_img_id = NULL; // image id is NULL for have a blank sprite
-	_id = agk::CreateSprite(_img_id);
+	_id = agk::CreateSprite(img_id);
 
 	_position.x = x;
 	_position.y = y;
+	agk::SetSpritePosition(_id, x, y);
 
 	_width = width;
 	_height = height;
-
-	agk::SetSpritePosition(_id, x, y);
 	agk::SetSpriteSize(_id, width, height);
 }
 
@@ -155,12 +163,14 @@ void Text::Initialize(float x, float y, std::string text, float size)
 {
 	_text = text;
 	_id = agk::CreateText(_text.c_str());
+	
 	_size = size;
+	SetSize(size);
+	
 	_position.x = x;
 	_position.y = y;
-
 	SetPosition(x, y);
-	SetSize(size);
+
 	SetColor(0, 0, 0);
 }
 
@@ -187,24 +197,35 @@ void Button::SetFocus(bool focus)
 
 bool Button::GetFocus()
 {
-	return false;
+	return _focus;
 }
 
 // MANAGEMENT
 
-void Button::Initialize(float x, float y, float width, float height, std::string name, float text_size, bool focus)
+void Button::Initialize(float x, float y, float width, float height, /*std::string image, */std::string name, float text_size, bool focus)
 {
-	_sprite.Initialize(x, y, width, height);
-	_text.Initialize(x, y, name, text_size);
 	_focus = focus;
 
-	SetPosition(_sprite.GetX(), _sprite.GetY());
+	_img_id_idle   = agk::LoadImage("..\\media\\images\\buttons\\idle.png");
+	_img_id_focus  = agk::LoadImage("..\\media\\images\\buttons\\focus.png");
+	_img_id_select = agk::LoadImage("..\\media\\images\\buttons\\select.png");
+	DbgLog(std::to_string(_img_id_idle).c_str());
+	DbgLog(std::to_string(_img_id_focus).c_str());
+	DbgLog(std::to_string(_img_id_select).c_str());
+	_sprite.Initialize(focus ? _img_id_focus : _img_id_idle, x, y, width, height);
+
+	_text.Initialize(x, y, name, text_size);
 	_text.SetAlignment(TextAlignment::CENTER);
+	
+	SetPosition(_sprite.GetX(), _sprite.GetY());
 }
 
 void Button::Update()
 {	
-	_sprite.DrawBounds(_focus);
+	//_sprite.SetImage(_focus ? _img_id_focus : _img_id_idle); // need rework, it's bad idea
+	// to call load image function every frame even if the button's state didn't chang
+
+	_sprite.DrawBounds(false);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

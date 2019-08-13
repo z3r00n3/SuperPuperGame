@@ -5,11 +5,15 @@
 #include "agk.h"
 #include "util.h"
 
-////-------------!!!-------------BEST PRACTICE-------------!!!-------------////
+////-------------!!!-------------BEST PRACTICES------------!!!-------------////
 // In private class members the first symbol of names is underscore '_'      //
 // This grants us fast understanding about private members when we're        //
 // reading/writing                                                           //
+//                                                                           //
+// Dont use AGK functions in classe's contructors otherwise will be access   //
+// error. Use Initialize() method instead constructor                        //
 ///////////////////////////////////////////////////////////////////////////////
+
 
 struct Coords
 {
@@ -35,7 +39,8 @@ public:
 	//void SetDepth(int depth);
 	//void SetWidth(...);
 	//void SetHeight(...);
-	//void SetImage(...);
+	void SetImage(int img_id);
+	void SetVisible(bool visible);
 	
 	// Getters
 	//int GetImageID();
@@ -48,12 +53,11 @@ public:
 	//Coords GetPositionByOffset();
 
 	// Management
-	void Initialize(float x, float y, float width, float height);
+	void Initialize(int img_id, float x, float y, float width, float height);
 	void DrawBounds(bool fill);
 
 private:
 	unsigned int _id;
-	unsigned int _img_id;
 	float _width, _height;
 	Coords _position;
 };
@@ -99,13 +103,17 @@ public:
 	bool GetFocus();
 	
 	// Management
-	void Initialize(float x, float y, float width, float height, std::string name, float text_size, bool focus);
+	void Initialize(float x, float y, float width, float height, /*std::string image, */std::string name, float text_size, bool focus);
 	void Update();
 
 private:
+	int _img_id_idle;
+	int _img_id_focus;
+	int _img_id_select;
 	Sprite _sprite;
 	Text _text;
 	bool _focus;
+	//ButtonState state;
 };
 
 class Menu
