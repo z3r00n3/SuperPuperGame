@@ -171,7 +171,7 @@ void Text::Initialize(float x, float y, std::string text, float size)
 	_position.y = y;
 	SetPosition(x, y);
 
-	SetColor(0, 0, 0);
+	SetColor(255, 255, 255);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -206,12 +206,9 @@ void Button::Initialize(float x, float y, float width, float height, /*std::stri
 {
 	_focus = focus;
 
-	_img_id_idle   = agk::LoadImage("..\\media\\images\\buttons\\idle.png");
-	_img_id_focus  = agk::LoadImage("..\\media\\images\\buttons\\focus.png");
-	_img_id_select = agk::LoadImage("..\\media\\images\\buttons\\select.png");
-	DbgLog(std::to_string(_img_id_idle).c_str());
-	DbgLog(std::to_string(_img_id_focus).c_str());
-	DbgLog(std::to_string(_img_id_select).c_str());
+	_img_id_idle   = agk::LoadImage("media\\images\\buttons\\idle.png", false);
+	_img_id_focus  = agk::LoadImage("media\\images\\buttons\\focus.png", false);
+	_img_id_select = agk::LoadImage("media\\images\\buttons\\select.png", false);
 	_sprite.Initialize(focus ? _img_id_focus : _img_id_idle, x, y, width, height);
 
 	_text.Initialize(x, y, name, text_size);
@@ -222,7 +219,7 @@ void Button::Initialize(float x, float y, float width, float height, /*std::stri
 
 void Button::Update()
 {	
-	//_sprite.SetImage(_focus ? _img_id_focus : _img_id_idle); // need rework, it's bad idea
+	_sprite.SetImage(_focus ? _img_id_focus : _img_id_idle); // need rework, it's bad idea
 	// to call load image function every frame even if the button's state didn't chang
 
 	_sprite.DrawBounds(false);
