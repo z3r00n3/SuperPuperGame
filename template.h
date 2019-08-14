@@ -19,8 +19,6 @@
 class app
 {
 public:
-	Menu menu;
-
 	// constructor
 	//app() { memset(this, 0, sizeof(app)); }
 	app() { ; }
@@ -33,7 +31,7 @@ public:
 	void End(void);
 
 private:
-
+	Menu _main_menu;
 };
 
 extern app App;

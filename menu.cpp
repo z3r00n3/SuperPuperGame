@@ -2,9 +2,9 @@
 
 ButtonData MainMenu[MAIN_MENU_SIZE] =
 {
-	{480, 110, 300, 100, "Start",    30},
-	{480, 270, 300, 100, "Settings", 30},
-	{480, 430, 300, 100, "About",    30},
+	{480.0, 150.0, 300.0, 100.0, "Start",    30.0},
+	{480.0, 270.0, 300.0, 100.0, "Settings", 30.0},
+	{480.0, 390.0, 300.0, 100.0, "About",    30.0},
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -131,7 +131,7 @@ int Text::GetID()
 
 // MANAGEMENT
 
-void Text::Initialize(float x, float y, std::string text, float size)
+void Text::Initialize(std::string text, float x, float y, float size)
 {
 	_text = text;
 	_id = agk::CreateText(_text.c_str());
@@ -192,7 +192,7 @@ void Button::Initialize(float x, float y, float width, float height, std::string
 	_img_id_select = agk::LoadImage(BUTTON_SELECT_IMAGE, false);
 	_sprite.Initialize(_img_id_idle, x, y, width, height);
 
-	_text.Initialize(x, y, name, text_size);
+	_text.Initialize(name, x, y, text_size);
 	_text.SetAlignment(TextAlignment::CENTER);
 	
 	SetPosition(_sprite.GetX(), _sprite.GetY());
@@ -200,17 +200,24 @@ void Button::Initialize(float x, float y, float width, float height, std::string
 
 void Button::Update()
 {	
-	_sprite.DrawBounds(false);
+	//_sprite.DrawBounds(false);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // MENU
 ///////////////////////////////////////////////////////////////////////////////
 
-void Menu::Initialize(int size, int active_item)
+void Menu::Initialize(int menu_size, int active_item, MenuTextData title, MenuTextData note)
 {
+	_title.Initialize(title.text, title.x, title.y, title.size);
+	_title.SetAlignment(title.alignment);
+	_note.Initialize(note.text, note.x, note.y, note.size);
+	_note.SetAlignment(note.alignment);
+
+	_size = menu_size;
+
 	_menu = new Button[3];
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < menu_size; i++)
 		_menu[i].Initialize(MainMenu[i].x,
 							MainMenu[i].y,
 							MainMenu[i].width,
@@ -218,7 +225,6 @@ void Menu::Initialize(int size, int active_item)
 							MainMenu[i].name,
 							MainMenu[i].text_size);
 
-	_size = size;
 	_active_item = active_item;
 	_menu[active_item].SetState(ButtonState::FOCUS);
 }

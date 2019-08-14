@@ -8,6 +8,8 @@
 // DEFINES
 ///////////////////////////////////////////////////////////////////////////////
 
+#define VERSION "v 0.14b"
+
 #define DBG_FILE "../DbgLog.txt"
 
 #define MAIN_MENU_SIZE 3
@@ -28,11 +30,12 @@ namespace Key
 {
 	enum Key
 	{
-		ENTER = 13,
-		LEFT  = 37,
-		UP    = 38,
-		RIGHT = 39,
-		DOWN  = 40,
+		ENTER  = 13,
+		ESCAPE = 27,
+		LEFT   = 37,
+		UP     = 38,
+		RIGHT  = 39,
+		DOWN   = 40,
 	};
 }
 
@@ -55,6 +58,32 @@ namespace ButtonState
 		SELECT = 2,
 	};
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// STRUCTS
+///////////////////////////////////////////////////////////////////////////////
+
+struct Coords
+{
+	float x, y;
+};
+
+struct MenuTextData
+{
+	std::string text;
+	float x, y;
+	float size;
+	TextAlignment::TextAlignment alignment;
+};
+
+struct ButtonData
+{
+	float x, y;
+	float width, height;
+	std::string name;
+	float text_size;
+	bool focus;
+};
 
 ///////////////////////////////////////////////////////////////////////////////
 // FUNCTION'S PROTOTYPES

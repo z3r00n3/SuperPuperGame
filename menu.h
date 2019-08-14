@@ -14,20 +14,6 @@
 // error. Use Initialize() method instead constructor                        //
 ///////////////////////////////////////////////////////////////////////////////
 
-struct Coords
-{
-	float x, y;
-};
-
-struct ButtonData
-{
-	float x, y;
-	float width, height;
-	std::string name;
-	float text_size;
-	bool focus;
-};
-
 class Sprite
 {
 public:
@@ -66,7 +52,7 @@ public:
 	int GetID();
 
 	// Management
-	void Initialize(float x, float y, std::string text, float size);
+	void Initialize(std::string text, float x, float y, float size);
 
 private:
 	unsigned int _id;
@@ -105,7 +91,7 @@ public:
 		delete [] _menu;
 	}
 
-	void Initialize(int size, int active_item);
+	void Initialize(int menu_size, int active_item, MenuTextData title, MenuTextData note);
 	void Update();
 	void InputHandler(Key::Key key);
 
@@ -113,4 +99,5 @@ private:
 	int _size;
 	Button *_menu;
 	int _active_item;
+	Text _title, _note;
 };
