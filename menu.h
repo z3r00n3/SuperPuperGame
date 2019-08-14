@@ -96,6 +96,8 @@ public:
 	void InputHandler(Key::Key key);
 
 private:
+	int _img_id_background;
+	Sprite _background;
 	int _size;
 	Button *_menu;
 	int _active_item;

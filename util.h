@@ -8,11 +8,18 @@
 // DEFINES
 ///////////////////////////////////////////////////////////////////////////////
 
-#define VERSION "v 0.14b"
+#define WINDOW_WIDTH  960
+#define WINDOW_HEIGHT 540
+
+#define VIRTUAL_WIDTH  960
+#define VIRTUAL_HEIGHT 540
+
+#define APP_VERSION "v 0.14c"
 
 #define DBG_FILE "../DbgLog.txt"
 
 #define MAIN_MENU_SIZE 3
+#define MAIN_MENU_BG_IMAGE  "media/images/backgrounds/main_menu_background.png"
 #define BUTTON_IDLE_IMAGE   "media/images/buttons/idle.png"
 #define BUTTON_FOCUS_IMAGE  "media/images/buttons/focus.png"
 #define BUTTON_SELECT_IMAGE "media/images/buttons/select.png"

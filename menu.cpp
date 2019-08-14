@@ -209,6 +209,9 @@ void Button::Update()
 
 void Menu::Initialize(int menu_size, int active_item, MenuTextData title, MenuTextData note)
 {
+	_img_id_background = agk::LoadImage(MAIN_MENU_BG_IMAGE);
+	_background.Initialize(_img_id_background, 0.0, 0.0, VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
+
 	_title.Initialize(title.text, title.x, title.y, title.size);
 	_title.SetAlignment(title.alignment);
 	_note.Initialize(note.text, note.x, note.y, note.size);

@@ -12,7 +12,7 @@ using namespace AGK;
 
 app App;
 MenuTextData Title = { "SuperPuperGame", 480.0, 0.0, 70.0, TextAlignment::CENTER };
-MenuTextData Note = { VERSION, 40.0, 510.0, 25.0, TextAlignment::CENTER };
+MenuTextData Note = { APP_VERSION, 40.0, 510.0, 25.0, TextAlignment::CENTER };
 
 void app::Begin(void)
 {
