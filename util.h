@@ -8,7 +8,12 @@
 // DEFINES
 ///////////////////////////////////////////////////////////////////////////////
 
-#define DBG_FILE "../dbg.txt"
+#define DBG_FILE "../DbgLog.txt"
+
+#define MAIN_MENU_SIZE 3
+#define BUTTON_IDLE_IMAGE   "media/images/buttons/idle.png"
+#define BUTTON_FOCUS_IMAGE  "media/images/buttons/focus.png"
+#define BUTTON_SELECT_IMAGE "media/images/buttons/select.png"
 
 ///////////////////////////////////////////////////////////////////////////////
 // ENUMS
@@ -23,6 +28,7 @@ namespace Key
 {
 	enum Key
 	{
+		ENTER = 13,
 		LEFT  = 37,
 		UP    = 38,
 		RIGHT = 39,
@@ -37,6 +43,16 @@ namespace TextAlignment
 		LEFT   = 0,
 		CENTER = 1,
 		RIGHT  = 2
+	};
+}
+
+namespace ButtonState
+{
+	enum ButtonState
+	{
+		IDLE   = 0,
+		FOCUS  = 1,
+		SELECT = 2,
 	};
 }
 

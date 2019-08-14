@@ -35,7 +35,7 @@ void app::Begin(void)
 	//
 	agk::UseNewDefaultFonts(true);
 
-	menu.Initialize(3, 0);
+	menu.Initialize(MAIN_MENU_SIZE, 0);
 }
 
 int app::Loop(void)
@@ -43,9 +43,11 @@ int app::Loop(void)
 	menu.Update();
 	
 	if (agk::GetRawKeyPressed(Key::UP))
-		menu.ChangeFocusButton(Key::UP);
+		menu.InputHandler(Key::UP);
 	if (agk::GetRawKeyPressed(Key::DOWN))
-		menu.ChangeFocusButton(Key::DOWN);
+		menu.InputHandler(Key::DOWN);
+	if (agk::GetRawKeyPressed(Key::ENTER))
+		menu.InputHandler(Key::ENTER);
 
 	agk::Sync();
 
