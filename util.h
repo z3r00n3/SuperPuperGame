@@ -14,7 +14,7 @@
 #define VIRTUAL_WIDTH  960
 #define VIRTUAL_HEIGHT 540
 
-#define APP_VERSION "v 0.14c"
+#define APP_VERSION "v 0.14d"
 
 #define DBG_FILE "../DbgLog.txt"
 
@@ -23,6 +23,9 @@
 #define BUTTON_IDLE_IMAGE   "media/images/buttons/idle.png"
 #define BUTTON_FOCUS_IMAGE  "media/images/buttons/focus.png"
 #define BUTTON_SELECT_IMAGE "media/images/buttons/select.png"
+
+#define WS_IMAGE    "media/images/WS.png"
+#define TOWER_IMAGE "media/images/Tower.png"
 
 ///////////////////////////////////////////////////////////////////////////////
 // ENUMS

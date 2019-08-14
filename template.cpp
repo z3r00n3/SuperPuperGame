@@ -43,6 +43,8 @@ void app::Begin(void)
 	agk::UseNewDefaultFonts(true);
 
 	_main_menu.Initialize(MAIN_MENU_SIZE, 0, Title, Note);
+	_WS.Initialize(agk::LoadImage(WS_IMAGE), 70.0, 174.0, 130.0, -1.0);
+	_Tower.Initialize(agk::LoadImage(TOWER_IMAGE), 750.0, 0.0, 170.0, -1.0);
 }
 
 int app::Loop(void)

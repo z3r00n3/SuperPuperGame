@@ -31,6 +31,8 @@ public:
 	void End(void);
 
 private:
+	Sprite _WS;
+	Sprite _Tower;
 	Menu _main_menu;
 };
 
