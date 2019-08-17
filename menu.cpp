@@ -1,6 +1,6 @@
 #include "menu.h"
 
-ButtonData MainMenu[MAIN_MENU_SIZE] =
+std::vector<ButtonData> MainMenuData =
 {
 	{480.0, 150.0, 300.0, 100.0, "Start",    30.0},
 	{480.0, 270.0, 300.0, 100.0, "Settings", 30.0},
@@ -185,7 +185,13 @@ void Button::SetState(ButtonState::ButtonState state)
 
 // MANAGEMENT
 
-void Button::Initialize(float x, float y, float width, float height, std::string name, float text_size)
+void Button::Initialize(float x,
+	float y,
+	float width,
+	float height,
+	std::string name,
+	float text_size )
+						//void(*action)())
 {
 	_img_id_idle   = agk::LoadImage(BUTTON_IDLE_IMAGE, false);
 	_img_id_focus  = agk::LoadImage(BUTTON_FOCUS_IMAGE, false);
@@ -196,11 +202,18 @@ void Button::Initialize(float x, float y, float width, float height, std::string
 	_text.SetAlignment(TextAlignment::CENTER);
 	
 	SetPosition(_sprite.GetX(), _sprite.GetY());
+
+//	_action = action;
 }
 
 void Button::Update()
 {	
 	//_sprite.DrawBounds(false);
+}
+
+void Button::Action()
+{
+	_action();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -221,12 +234,12 @@ void Menu::Initialize(int menu_size, int active_item, MenuTextData title, MenuTe
 
 	_menu = new Button[3];
 	for (int i = 0; i < menu_size; i++)
-		_menu[i].Initialize(MainMenu[i].x,
-							MainMenu[i].y,
-							MainMenu[i].width,
-							MainMenu[i].height,
-							MainMenu[i].name,
-							MainMenu[i].text_size);
+		_menu[i].Initialize(MainMenuData[i].x,
+							MainMenuData[i].y,
+							MainMenuData[i].width,
+							MainMenuData[i].height,
+							MainMenuData[i].name,
+							MainMenuData[i].text_size);
 
 	_active_item = active_item;
 	_menu[active_item].SetState(ButtonState::FOCUS);
@@ -238,21 +251,21 @@ void Menu::Update()
 		_menu[i].Update();
 }
 
-void Menu::InputHandler(Key::Key key)
+void Menu::InputHandler(int key)
 {
 	switch (key)
 	{
-	case Key::UP:
+	case KEY_UP:
 		_menu[_active_item].SetState(ButtonState::IDLE);
 		_active_item > 0 ? _active_item-- : _active_item = _size - 1;
 		_menu[_active_item].SetState(ButtonState::FOCUS);
 		break;
-	case Key::DOWN:
+	case KEY_DOWN:
 		_menu[_active_item].SetState(ButtonState::IDLE);
 		_active_item < _size - 1 ? _active_item++ : _active_item = 0;
 		_menu[_active_item].SetState(ButtonState::FOCUS);
 		break;
-	case Key::ENTER:
+	case KEY_ENTER:
 		_menu[_active_item].SetState(ButtonState::SELECT);
 		//_menu[_active_item].SetState(ButtonState::FOCUS);
 		break;

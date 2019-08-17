@@ -5,6 +5,7 @@
 #include "AGK.h"
 #include "menu.h"
 #include "util.h"
+#include "input.h"
 
 #define DEVICE_WIDTH 960
 #define DEVICE_HEIGHT 540

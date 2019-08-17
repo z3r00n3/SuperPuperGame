@@ -4,6 +4,7 @@
 
 #include "agk.h"
 #include "util.h"
+#include "input.h"
 
 ////-------------!!!-------------BEST PRACTICES------------!!!-------------////
 // In private class members the first symbol of names is underscore '_'      //
@@ -71,8 +72,15 @@ public:
 	// Getters
 	
 	// Management
-	void Initialize(float x, float y, float width, float height, std::string name, float text_size);
+	void Initialize(float x,
+		float y,
+		float width,
+		float height,
+		std::string name,
+		float text_size );
+					//void (*action)());
 	void Update();
+	void Action();
 
 private:
 	int _img_id_idle;
@@ -81,6 +89,7 @@ private:
 	Sprite _sprite;
 	Text _text;
 	ButtonState::ButtonState _state;
+	void(*_action)();
 };
 
 class Menu
@@ -93,7 +102,7 @@ public:
 
 	void Initialize(int menu_size, int active_item, MenuTextData title, MenuTextData note);
 	void Update();
-	void InputHandler(Key::Key key);
+	void InputHandler(int key);
 
 private:
 	int _img_id_background;

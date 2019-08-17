@@ -1,6 +1,5 @@
 // Includes
 #include "template.h"
-#include "util.h"
 
 // Namespace
 using namespace AGK;
@@ -11,6 +10,7 @@ using namespace AGK;
 ///////////////////////////////////////////////////////////////////////////////
 
 app App;
+
 MenuTextData Title = { "SuperPuperGame", 480.0, 0.0, 70.0, TextAlignment::CENTER };
 MenuTextData Note = { APP_VERSION, 40.0, 510.0, 25.0, TextAlignment::CENTER };
 
@@ -51,14 +51,14 @@ int app::Loop(void)
 {
 	_main_menu.Update();
 	
-	if (agk::GetRawKeyPressed(Key::ENTER))
-		_main_menu.InputHandler(Key::ENTER);
-	if (agk::GetRawKeyPressed(Key::ESCAPE))
+	if (agk::GetRawKeyPressed(KEY_ENTER))
+		_main_menu.InputHandler(KEY_ENTER);
+	if (agk::GetRawKeyPressed(KEY_ESCAPE))
 		return 1;
-	if (agk::GetRawKeyPressed(Key::UP))
-		_main_menu.InputHandler(Key::UP);
-	if (agk::GetRawKeyPressed(Key::DOWN))
-		_main_menu.InputHandler(Key::DOWN);
+	if (agk::GetRawKeyPressed(KEY_UP))
+		_main_menu.InputHandler(KEY_UP);
+	if (agk::GetRawKeyPressed(KEY_DOWN))
+		_main_menu.InputHandler(KEY_DOWN);
 
 	agk::Sync();
 

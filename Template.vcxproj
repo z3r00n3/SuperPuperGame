@@ -122,11 +122,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
+    <ClCompile Include="input.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="template.cpp" />
     <ClCompile Include="util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="command.h" />
+    <ClInclude Include="input.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="template.h" />
     <ClInclude Include="util.h" />
