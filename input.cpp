@@ -22,6 +22,7 @@ InputHandler::~InputHandler()
 
 Command* InputHandler::Handler()
 {
+	if (agk::GetRawKeyPressed(KEY_ENTER)) return _keyEnter;
 
 	return NULL;
 }

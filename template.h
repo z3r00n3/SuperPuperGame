@@ -35,6 +35,8 @@ private:
 	Sprite _WS;
 	Sprite _Tower;
 	Menu _main_menu;
+	InputHandler _inputHandler;
+	Command *_command;
 };
 
 extern app App;

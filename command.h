@@ -1,5 +1,7 @@
 #pragma once
 
+#include "util.h"
+
 class Command
 {
 public:
@@ -10,5 +12,8 @@ public:
 class ButtonActivate : public Command
 {
 public:
-	virtual void Execute() { ; }
+	virtual void Execute()
+	{ 
+		DbgLog("wooooooooow");
+	}
 };

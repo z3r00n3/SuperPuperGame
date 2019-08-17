@@ -22,10 +22,10 @@ public:
 	Command* Handler();
 
 private:
-	Command* _keyEnter;
-	Command* _keyEscape;
-	Command* _keyLeft;
-	Command* _keyUp;
-	Command* _keyRight;
-	Command* _keyDown;
+	Command *_keyEnter;
+	Command *_keyEscape;
+	Command *_keyLeft;
+	Command *_keyUp;
+	Command *_keyRight;
+	Command *_keyDown;
 };
