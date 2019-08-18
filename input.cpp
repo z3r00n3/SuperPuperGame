@@ -1,16 +1,16 @@
 #include "input.h"
 
-InputHandler::InputHandler()
+Input::Input()
 {
 	_keyEnter  = new ButtonActivate();
 	_keyEscape = NULL;
 	_keyLeft   = NULL;
-	_keyUp     = NULL;
+	_keyUp     = new ButtonUp();
 	_keyRight  = NULL;
-	_keyDown   = NULL;
+	_keyDown   = new ButtonDown();
 }
 
-InputHandler::~InputHandler()
+Input::~Input()
 {
 	delete _keyEnter;
 	delete _keyEscape;
@@ -20,9 +20,11 @@ InputHandler::~InputHandler()
 	delete _keyDown;
 }
 
-Command* InputHandler::Handler()
+Command* Input::Handler()
 {
-	if (agk::GetRawKeyPressed(KEY_ENTER)) return _keyEnter;
+	if (agk::GetRawKeyPressed(Key::ENTER)) return _keyEnter;
+	if (agk::GetRawKeyPressed(Key::UP))    return _keyUp;
+	if (agk::GetRawKeyPressed(Key::DOWN))  return _keyDown;
 
 	return NULL;
 }

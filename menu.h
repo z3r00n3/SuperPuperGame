@@ -4,7 +4,6 @@
 
 #include "agk.h"
 #include "util.h"
-#include "input.h"
 
 ////-------------!!!-------------BEST PRACTICES------------!!!-------------////
 // In private class members the first symbol of names is underscore '_'      //
@@ -102,7 +101,7 @@ public:
 
 	void Initialize(int menu_size, int active_item, MenuTextData title, MenuTextData note);
 	void Update();
-	void InputHandler(int key);
+	void InputHandler(Key::Key key);
 
 private:
 	int _img_id_background;

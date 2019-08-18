@@ -35,7 +35,7 @@ private:
 	Sprite _WS;
 	Sprite _Tower;
 	Menu _main_menu;
-	InputHandler _inputHandler;
+	Input _input;
 	Command *_command;
 };
 

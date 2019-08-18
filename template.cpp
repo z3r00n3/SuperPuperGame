@@ -51,17 +51,11 @@ int app::Loop(void)
 {
 	_main_menu.Update();
 	
-	_command = _inputHandler.Handler();
-	if (_command) _command->Execute();
+	_command = _input.Handler();
+	if (_command) _command->Execute(&_main_menu);
 
-	if (agk::GetRawKeyPressed(KEY_ENTER))
-		_main_menu.InputHandler(KEY_ENTER);
-	if (agk::GetRawKeyPressed(KEY_ESCAPE))
+	if (agk::GetRawKeyPressed(Key::ESCAPE))
 		return 1;
-	if (agk::GetRawKeyPressed(KEY_UP))
-		_main_menu.InputHandler(KEY_UP);
-	if (agk::GetRawKeyPressed(KEY_DOWN))
-		_main_menu.InputHandler(KEY_DOWN);
 
 	agk::Sync();
 

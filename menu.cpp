@@ -251,21 +251,21 @@ void Menu::Update()
 		_menu[i].Update();
 }
 
-void Menu::InputHandler(int key)
+void Menu::InputHandler(Key::Key key)
 {
 	switch (key)
 	{
-	case KEY_UP:
+	case Key::UP:
 		_menu[_active_item].SetState(ButtonState::IDLE);
 		_active_item > 0 ? _active_item-- : _active_item = _size - 1;
 		_menu[_active_item].SetState(ButtonState::FOCUS);
 		break;
-	case KEY_DOWN:
+	case Key::DOWN:
 		_menu[_active_item].SetState(ButtonState::IDLE);
 		_active_item < _size - 1 ? _active_item++ : _active_item = 0;
 		_menu[_active_item].SetState(ButtonState::FOCUS);
 		break;
-	case KEY_ENTER:
+	case Key::ENTER:
 		_menu[_active_item].SetState(ButtonState::SELECT);
 		//_menu[_active_item].SetState(ButtonState::FOCUS);
 		break;

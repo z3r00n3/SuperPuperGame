@@ -14,7 +14,7 @@
 #define VIRTUAL_WIDTH  960
 #define VIRTUAL_HEIGHT 540
 
-#define APP_VERSION "v 0.14d"
+#define APP_VERSION "v 0.16a"
 
 #define DBG_FILE "../DbgLog.txt"
 
@@ -36,13 +36,26 @@
 // redefinition of constants                                                 //
 ///////////////////////////////////////////////////////////////////////////////
 
+namespace Key
+{
+	enum Key
+	{
+		ENTER  = 13,
+		ESCAPE = 27,
+		LEFT   = 37,
+		UP     = 38,
+		RIGHT  = 39,
+		DOWN   = 40,
+	};
+}
+
 namespace TextAlignment
 {
 	enum TextAlignment
 	{
 		LEFT   = 0,
 		CENTER = 1,
-		RIGHT  = 2
+		RIGHT  = 2,
 	};
 }
 
