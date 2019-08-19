@@ -72,12 +72,12 @@ public:
 	
 	// Management
 	void Initialize(float x,
-		float y,
-		float width,
-		float height,
-		std::string name,
-		float text_size );
-					//void (*action)());
+					float y,
+					float width,
+					float height,
+					std::string name,
+					float text_size,
+					void(*action)());
 	void Update();
 	void Action();
 
@@ -101,7 +101,9 @@ public:
 
 	void Initialize(int menu_size, int active_item, MenuTextData title, MenuTextData note);
 	void Update();
-	void InputHandler(Key::Key key);
+	void ButtonActivate();
+	void ButtonNext();
+	void ButtonLast();
 
 private:
 	int _img_id_background;
@@ -110,4 +112,15 @@ private:
 	Button *_menu;
 	int _active_item;
 	Text _title, _note;
+};
+
+class Game
+{
+public:
+	void Initialize();
+	void Update();
+
+private:
+	Sprite _WS;
+	Sprite _Tower;
 };

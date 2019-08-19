@@ -9,3 +9,8 @@ void DbgLog(const char *str)
 	 fp << str << std::endl;
 	 fp.close();
 }
+
+void ButtonStartAction()
+{
+	DbgLog("Start");
+}

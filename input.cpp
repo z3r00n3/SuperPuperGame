@@ -5,9 +5,9 @@ Input::Input()
 	_keyEnter  = new ButtonActivate();
 	_keyEscape = NULL;
 	_keyLeft   = NULL;
-	_keyUp     = new ButtonUp();
+	_keyUp     = new ButtonNext();
 	_keyRight  = NULL;
-	_keyDown   = new ButtonDown();
+	_keyDown   = new ButtonLast();
 }
 
 Input::~Input()

@@ -13,26 +13,17 @@ public:
 class ButtonActivate : public Command
 {
 public:
-	virtual void Execute(Menu *menu)
-	{ 
-		menu->InputHandler(Key::ENTER);
-	}
+	virtual void Execute(Menu *menu) { menu->ButtonActivate(); }
 };
 
-class ButtonUp : public Command
+class ButtonNext : public Command
 {
 public:
-	virtual void Execute(Menu *menu)
-	{
-		menu->InputHandler(Key::UP);
-	}
+	virtual void Execute(Menu *menu) { menu->ButtonNext(); }
 };
 
-class ButtonDown : public Command
+class ButtonLast : public Command
 {
 public:
-	virtual void Execute(Menu *menu)
-	{
-		menu->InputHandler(Key::DOWN);
-	}
+	virtual void Execute(Menu *menu) { menu->ButtonLast(); }
 };

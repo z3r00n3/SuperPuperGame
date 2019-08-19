@@ -1,10 +1,14 @@
 #include "menu.h"
 
+///////////////////////////////////////////////////////////////////////////////
+// GLOBALS
+///////////////////////////////////////////////////////////////////////////////
+
 std::vector<ButtonData> MainMenuData =
 {
-	{480.0, 150.0, 300.0, 100.0, "Start",    30.0},
-	{480.0, 270.0, 300.0, 100.0, "Settings", 30.0},
-	{480.0, 390.0, 300.0, 100.0, "About",    30.0},
+	{480.0, 150.0, 300.0, 100.0, "Start",    30.0, &ButtonStartAction},
+	{480.0, 270.0, 300.0, 100.0, "Settings", 30.0, &ButtonStartAction},
+	{480.0, 390.0, 300.0, 100.0, "About",    30.0, &ButtonStartAction},
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -186,12 +190,12 @@ void Button::SetState(ButtonState::ButtonState state)
 // MANAGEMENT
 
 void Button::Initialize(float x,
-	float y,
-	float width,
-	float height,
-	std::string name,
-	float text_size )
-						//void(*action)())
+						float y,
+						float width,
+						float height,
+						std::string name,
+						float text_size,
+						void(*action)())
 {
 	_img_id_idle   = agk::LoadImage(BUTTON_IDLE_IMAGE, false);
 	_img_id_focus  = agk::LoadImage(BUTTON_FOCUS_IMAGE, false);
@@ -201,9 +205,9 @@ void Button::Initialize(float x,
 	_text.Initialize(name, x, y, text_size);
 	_text.SetAlignment(TextAlignment::CENTER);
 	
-	SetPosition(_sprite.GetX(), _sprite.GetY());
+	_action = action;
 
-//	_action = action;
+	SetPosition(_sprite.GetX(), _sprite.GetY());
 }
 
 void Button::Update()
@@ -239,7 +243,8 @@ void Menu::Initialize(int menu_size, int active_item, MenuTextData title, MenuTe
 							MainMenuData[i].width,
 							MainMenuData[i].height,
 							MainMenuData[i].name,
-							MainMenuData[i].text_size);
+							MainMenuData[i].text_size,
+							MainMenuData[i].action);
 
 	_active_item = active_item;
 	_menu[active_item].SetState(ButtonState::FOCUS);
@@ -251,26 +256,32 @@ void Menu::Update()
 		_menu[i].Update();
 }
 
-void Menu::InputHandler(Key::Key key)
+void Menu::ButtonActivate()
 {
-	switch (key)
-	{
-	case Key::UP:
-		_menu[_active_item].SetState(ButtonState::IDLE);
-		_active_item > 0 ? _active_item-- : _active_item = _size - 1;
-		_menu[_active_item].SetState(ButtonState::FOCUS);
-		break;
-	case Key::DOWN:
-		_menu[_active_item].SetState(ButtonState::IDLE);
-		_active_item < _size - 1 ? _active_item++ : _active_item = 0;
-		_menu[_active_item].SetState(ButtonState::FOCUS);
-		break;
-	case Key::ENTER:
-		_menu[_active_item].SetState(ButtonState::SELECT);
-		//_menu[_active_item].SetState(ButtonState::FOCUS);
-		break;
-	default:
-		break;
-	}
+	_menu[_active_item].SetState(ButtonState::SELECT);
+	_menu[_active_item].Action();
 }
 
+void Menu::ButtonNext()
+{
+	_menu[_active_item].SetState(ButtonState::IDLE);
+	_active_item > 0 ? _active_item-- : _active_item = _size - 1;
+	_menu[_active_item].SetState(ButtonState::FOCUS);
+}
+
+void Menu::ButtonLast()
+{
+	_menu[_active_item].SetState(ButtonState::IDLE);
+	_active_item < _size - 1 ? _active_item++ : _active_item = 0;
+	_menu[_active_item].SetState(ButtonState::FOCUS);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// MENU
+///////////////////////////////////////////////////////////////////////////////
+
+void Game::Initialize()
+{
+	_WS.Initialize(agk::LoadImage(WS_IMAGE), 70.0, 174.0, 130.0, -1.0);
+	_Tower.Initialize(agk::LoadImage(TOWER_IMAGE), 750.0, 0.0, 170.0, -1.0);
+}

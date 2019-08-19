@@ -42,14 +42,23 @@ void app::Begin(void)
 	//
 	agk::UseNewDefaultFonts(true);
 
+	_gameState = GameState::MAIN_MENU;
 	_main_menu.Initialize(MAIN_MENU_SIZE, 0, Title, Note);
-	_WS.Initialize(agk::LoadImage(WS_IMAGE), 70.0, 174.0, 130.0, -1.0);
-	_Tower.Initialize(agk::LoadImage(TOWER_IMAGE), 750.0, 0.0, 170.0, -1.0);
 }
 
 int app::Loop(void)
 {
-	_main_menu.Update();
+	switch (_gameState)
+	{
+	case GameState::MAIN_MENU:
+		_main_menu.Update();
+		break;
+	case GameState::GAME:
+		_game.Initialize();
+		break;
+	default:
+		break;
+	}
 	
 	_command = _input.Handler();
 	if (_command) _command->Execute(&_main_menu);

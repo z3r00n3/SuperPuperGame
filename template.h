@@ -25,7 +25,6 @@ public:
 	app() { ; }
 	~app() { ; }
 
-
 	// main app functions - mike to experiment with a derived class for this..
 	void Begin(void);
 	int Loop(void);
@@ -37,6 +36,8 @@ private:
 	Menu _main_menu;
 	Input _input;
 	Command *_command;
+	Game _game;
+	GameState::GameState _gameState;
 };
 
 extern app App;
