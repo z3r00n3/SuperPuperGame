@@ -36,7 +36,6 @@ private:
 	Menu _main_menu;
 	Input _input;
 	Command *_command;
-	//Game _game;
 	GameState::GameState _gameState;
 };
 

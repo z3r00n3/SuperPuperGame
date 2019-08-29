@@ -275,13 +275,4 @@ void Menu::ButtonLast()
 	_active_item < _size - 1 ? _active_item++ : _active_item = 0;
 	_menu[_active_item].SetState(ButtonState::FOCUS);
 }
-//
-/////////////////////////////////////////////////////////////////////////////////
-//// MENU
-/////////////////////////////////////////////////////////////////////////////////
-//
-//void Game::Initialize()
-//{
-//	_WS.Initialize(agk::LoadImage(WS_IMAGE), 70.0, 174.0, 130.0, -1.0);
-//	_Tower.Initialize(agk::LoadImage(TOWER_IMAGE), 750.0, 0.0, 170.0, -1.0);
-//}
+
