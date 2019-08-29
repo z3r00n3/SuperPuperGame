@@ -54,7 +54,7 @@ int app::Loop(void)
 		_main_menu.Update();
 		break;
 	case GameState::GAME:
-		_game.Initialize();
+		//_game.Initialize();
 		break;
 	default:
 		break;

@@ -14,7 +14,7 @@
 #define VIRTUAL_WIDTH  960
 #define VIRTUAL_HEIGHT 540
 
-#define APP_VERSION "v 0.17a"
+#define APP_VERSION "v 0.18a"
 
 #define DBG_FILE "../DbgLog.txt"
 

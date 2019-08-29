@@ -113,14 +113,14 @@ private:
 	int _active_item;
 	Text _title, _note;
 };
-
-class Game
-{
-public:
-	void Initialize();
-	void Update();
-
-private:
-	Sprite _WS;
-	Sprite _Tower;
-};
+//
+//class Game
+//{
+//public:
+//	void Initialize();
+//	void Update();
+//
+//private:
+//	Sprite _WS;
+//	Sprite _Tower;
+//};
