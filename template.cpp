@@ -1,5 +1,10 @@
 // Includes
 #include "template.h"
+#include "src/utils/util.h"
+#include "src/graphics/sprite.h"
+#include "src/graphics/gui/menu.h"
+#include "src/input/input.h"
+#include "src/input/command.h"
 
 // Namespace
 using namespace AGK;
@@ -43,7 +48,11 @@ void app::Begin(void)
 	agk::UseNewDefaultFonts(true);
 
 	_gameState = GameState::MAIN_MENU;
-	_main_menu.Initialize(MAIN_MENU_SIZE, 0, Title, Note);
+
+	_main_menu = new Menu();
+	_main_menu->Initialize(MAIN_MENU_SIZE, 0, Title, Note);
+
+	_input = new Input();
 }
 
 int app::Loop(void)
@@ -51,7 +60,7 @@ int app::Loop(void)
 	switch (_gameState)
 	{
 	case GameState::MAIN_MENU:
-		_main_menu.Update();
+		_main_menu->Update();
 		break;
 	case GameState::GAME:
 		break;
@@ -59,8 +68,8 @@ int app::Loop(void)
 		break;
 	}
 	
-	_command = _input.Handler();
-	if (_command) _command->Execute(&_main_menu);
+	_command = _input->Handler();
+	if (_command) _command->Execute(_main_menu);
 
 	if (agk::GetRawKeyPressed(Key::ESCAPE))
 		return 1;

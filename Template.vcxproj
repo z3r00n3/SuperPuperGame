@@ -122,13 +122,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
+    <ClCompile Include="src\graphics\gui\button.cpp" />
     <ClCompile Include="src\graphics\gui\menu.cpp" />
+    <ClCompile Include="src\graphics\sprite.cpp" />
+    <ClCompile Include="src\graphics\text.cpp" />
     <ClCompile Include="src\input\input.cpp" />
     <ClCompile Include="src\utils\util.cpp" />
     <ClCompile Include="template.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\graphics\gui\button.h" />
     <ClInclude Include="src\graphics\gui\menu.h" />
+    <ClInclude Include="src\graphics\sprite.h" />
+    <ClInclude Include="src\graphics\text.h" />
     <ClInclude Include="src\input\command.h" />
     <ClInclude Include="src\input\input.h" />
     <ClInclude Include="src\utils\util.h" />

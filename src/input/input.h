@@ -1,7 +1,6 @@
 #pragma once
 
-#include "agk.h"
-#include "command.h"
+class Command;
 
 ///////////////////////////////////////////////////////////////////////////////
 // MNEMONIC NAMES FOR KEYS                                                 

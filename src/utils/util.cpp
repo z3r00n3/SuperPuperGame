@@ -1,6 +1,6 @@
-#include <fstream>
-
 #include "util.h"
+
+#include <fstream>
 
 void DbgLog(const char *str)
 {

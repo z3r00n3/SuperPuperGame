@@ -12,6 +12,15 @@
     <ClCompile Include="src\utils\util.cpp">
       <Filter>src\utils</Filter>
     </ClCompile>
+    <ClCompile Include="src\graphics\sprite.cpp">
+      <Filter>src\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\text.cpp">
+      <Filter>src\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\gui\button.cpp">
+      <Filter>src\graphics\gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="template.h" />
@@ -26,6 +35,15 @@
     </ClInclude>
     <ClInclude Include="src\utils\util.h">
       <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\sprite.h">
+      <Filter>src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\text.h">
+      <Filter>src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\gui\button.h">
+      <Filter>src\graphics\gui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

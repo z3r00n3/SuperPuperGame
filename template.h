@@ -3,9 +3,6 @@
 
 // Link to GDK libraries
 #include "AGK.h"
-#include "src/graphics/gui/menu.h"
-#include "src/utils/util.h"
-#include "src/input/input.h"
 
 #define DEVICE_WIDTH 960
 #define DEVICE_HEIGHT 540
@@ -15,6 +12,12 @@
 
 // used to make a more unique folder for the write path
 #define COMPANY_NAME "My Company"
+
+namespace GameState { enum GameState; };
+class Sprite;
+class Menu;
+class Input;
+class Command;
 
 // Global values for the app
 class app
@@ -31,10 +34,10 @@ public:
 	void End(void);
 
 private:
-	Sprite _WS;
-	Sprite _Tower;
-	Menu _main_menu;
-	Input _input;
+	//Sprite *_WS;
+	//Sprite *_Tower;
+	Menu *_main_menu;
+	Input *_input;
 	Command *_command;
 	GameState::GameState _gameState;
 };
