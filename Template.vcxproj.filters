@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Core.cpp" />
+    <ClCompile Include="template.cpp" />
+    <ClCompile Include="src\graphics\gui\menu.cpp">
+      <Filter>src\graphics\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input\input.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\util.cpp">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="template.h" />
+    <ClInclude Include="src\graphics\gui\menu.h">
+      <Filter>src\graphics\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input\command.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input\input.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\util.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{300e6a5c-8f30-4a37-97ae-d15fd2828d2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\graphics">
+      <UniqueIdentifier>{724cfac5-f6ba-4f1b-a58d-e98843bb14b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\graphics\gui">
+      <UniqueIdentifier>{91419abd-4be3-4b9d-a0de-b063fe8067a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\graphics\game">
+      <UniqueIdentifier>{329e318f-d272-4126-87e5-804f0ded4d4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\input">
+      <UniqueIdentifier>{e14b691d-b0d9-4925-9d18-10bdb01e7692}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utils">
+      <UniqueIdentifier>{93b653fe-2873-43bd-b47f-07ea1efec525}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
