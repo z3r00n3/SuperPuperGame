@@ -5,11 +5,12 @@ struct Coords;
 class Sprite
 {
 public:
+	~Sprite();
+
 	// Setters
 	void SetOffset(float x, float y);
 	void SetPositionByOffset(float x, float y);
 	void SetImage(int img_id);
-	void SetVisible(bool visible);
 
 	// Getters
 	float GetX();
@@ -19,7 +20,7 @@ public:
 
 	// Management
 	void Initialize(int img_id, float x, float y, float width, float height);
-	void DrawBounds(bool fill);
+	void DrawBounds(bool fill); // Для дебага
 
 private:
 	unsigned int _id;

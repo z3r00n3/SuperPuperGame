@@ -127,7 +127,7 @@
     <ClCompile Include="src\graphics\sprite.cpp" />
     <ClCompile Include="src\graphics\text.cpp" />
     <ClCompile Include="src\input\input.cpp" />
-    <ClCompile Include="src\utils\util.cpp" />
+    <ClCompile Include="src\utils\common.cpp" />
     <ClCompile Include="template.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -137,7 +137,7 @@
     <ClInclude Include="src\graphics\text.h" />
     <ClInclude Include="src\input\command.h" />
     <ClInclude Include="src\input\input.h" />
-    <ClInclude Include="src\utils\util.h" />
+    <ClInclude Include="src\utils\common.h" />
     <ClInclude Include="template.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

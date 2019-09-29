@@ -1,11 +1,13 @@
 #include "agk.h"
 #include "src/graphics/gui/menu.h"
-#include "src/utils/util.h"
+#include "src/utils/common.h"
 #include "src/graphics/sprite.h"
 #include "src/graphics/text.h"
 #include "src/graphics/gui/button.h"
 
 #include <vector>
+
+using namespace Common;
 
 ///////////////////////////////////////////////////////////////////////////////
 // GLOBALS

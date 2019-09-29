@@ -1,7 +1,9 @@
 #include "agk.h"
 #include "src/input/input.h"
 #include "src/input/command.h"
-#include "src/utils/util.h"
+#include "src/utils/common.h"
+
+using namespace Common;
 
 Input::Input()
 {

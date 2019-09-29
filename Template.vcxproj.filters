@@ -9,9 +9,6 @@
     <ClCompile Include="src\input\input.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
-    <ClCompile Include="src\utils\util.cpp">
-      <Filter>src\utils</Filter>
-    </ClCompile>
     <ClCompile Include="src\graphics\sprite.cpp">
       <Filter>src\graphics</Filter>
     </ClCompile>
@@ -20,6 +17,9 @@
     </ClCompile>
     <ClCompile Include="src\graphics\gui\button.cpp">
       <Filter>src\graphics\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\common.cpp">
+      <Filter>src\utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -33,9 +33,6 @@
     <ClInclude Include="src\input\input.h">
       <Filter>src\input</Filter>
     </ClInclude>
-    <ClInclude Include="src\utils\util.h">
-      <Filter>src\utils</Filter>
-    </ClInclude>
     <ClInclude Include="src\graphics\sprite.h">
       <Filter>src\graphics</Filter>
     </ClInclude>
@@ -44,6 +41,9 @@
     </ClInclude>
     <ClInclude Include="src\graphics\gui\button.h">
       <Filter>src\graphics\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\common.h">
+      <Filter>src\utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

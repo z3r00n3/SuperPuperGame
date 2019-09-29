@@ -1,6 +1,6 @@
 // Includes
 #include "template.h"
-#include "src/utils/util.h"
+#include "src/utils/common.h"
 #include "src/graphics/sprite.h"
 #include "src/graphics/gui/menu.h"
 #include "src/input/input.h"
@@ -8,6 +8,7 @@
 
 // Namespace
 using namespace AGK;
+using namespace Common;
 
 app App;
 
@@ -41,7 +42,6 @@ void app::Begin(void)
 
 	//
 	agk::UseNewDefaultFonts(true);
-
 	_gameState = GameState::MAIN_MENU;
 
 	_main_menu = new Menu();

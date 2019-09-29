@@ -1,6 +1,13 @@
 #include "agk.h"
 #include "src/graphics/text.h"
-#include "src/utils/util.h"
+#include "src/utils/common.h"
+
+using namespace Common;
+
+Text::~Text()
+{
+	delete _position;
+}
 
 // SETTERS
 
@@ -24,7 +31,7 @@ void Text::SetColor(unsigned int red, unsigned int green, unsigned int blue)
 	agk::SetTextColor(_id, red, green, blue);
 }
 
-void Text::SetAlignment(TextAlignment::TextAlignment alignment)
+void Text::SetAlignment(TextAlignment alignment)
 {
 	agk::SetTextAlignment(_id, alignment);
 }
@@ -51,5 +58,5 @@ void Text::Initialize(std::string text, float x, float y, float size)
 	_position->y = y;
 	SetPosition(x, y);
 
-	SetColor(255, 255, 255);
+	SetColor(255, 255, 255); // Здесь не должно быть значение конкретного цвета, оно должно быть параметрическим
 }

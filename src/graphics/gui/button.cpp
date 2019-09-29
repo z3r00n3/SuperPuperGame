@@ -1,8 +1,10 @@
 #include "agk.h"
 #include "src/graphics/gui/button.h"
-#include "src/utils/util.h"
+#include "src/utils/common.h"
 #include "src/graphics/sprite.h"
 #include "src/graphics/text.h"
+
+using namespace Common;
 
 // SETTERS
 
@@ -14,7 +16,7 @@ void Button::SetPosition(float x, float y)
 	_text->SetPosition(x, y - agk::GetTextTotalHeight(_text->GetID()) / 2);
 }
 
-void Button::SetState(ButtonState::ButtonState state)
+void Button::SetState(ButtonState state)
 {
 	switch (state)
 	{

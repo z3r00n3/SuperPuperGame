@@ -1,6 +1,11 @@
 #include "agk.h"
 #include "src/graphics/sprite.h"
-#include "src/utils/util.h"
+#include "src/utils/common.h"
+
+Sprite::~Sprite()
+{
+	delete _position;
+}
 
 // SETTERS
 
@@ -20,11 +25,6 @@ void Sprite::SetPositionByOffset(float x, float y)
 void Sprite::SetImage(int img_id)
 {
 	agk::SetSpriteImage(_id, img_id);
-}
-
-void Sprite::SetVisible(bool visible)
-{
-	agk::SetSpriteVisible(_id, visible);
 }
 
 // GETTERS
