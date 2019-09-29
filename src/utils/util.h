@@ -16,7 +16,7 @@
 #define VIRTUAL_WIDTH  960
 #define VIRTUAL_HEIGHT 540
 
-#define APP_VERSION "v 0.19a"
+#define APP_VERSION "v 0.20a"
 
 #define DBG_FILE "../DbgLog.txt"
 
@@ -31,11 +31,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 // ENUMS
-///////////////////////////////////////////////////////////////////////////////
-
-////-------------!!!-------------BEST-PRACTICES------------!!!-------------////
-// Every global enumeration need his own namespace otherwise will be         //
-// redefinition of constants                                                 //
 ///////////////////////////////////////////////////////////////////////////////
 
 namespace Key

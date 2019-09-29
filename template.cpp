@@ -9,11 +9,6 @@
 // Namespace
 using namespace AGK;
 
-////-------------!!!-------------BEST-PRACTICES------------!!!-------------////
-// Float/double numbers always must have the real part of the number even if //
-// this part is equal to .0                                                  //
-///////////////////////////////////////////////////////////////////////////////
-
 app App;
 
 MenuTextData Title = { "SuperPuperGame", 480.0, 0.0, 70.0, TextAlignment::CENTER };

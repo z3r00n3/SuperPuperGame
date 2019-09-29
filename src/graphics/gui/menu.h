@@ -5,15 +5,6 @@ class Sprite;
 class Text;
 class Button;
 
-////-------------!!!-------------BEST PRACTICES------------!!!-------------////
-// In private class members the first symbol of names is underscore '_'      //
-// This grants us fast understanding about private members when we're        //
-// reading/writing                                                           //
-//                                                                           //
-// Dont use AGK functions in classe's contructors otherwise will be access   //
-// error. Use Initialize() method instead constructor                        //
-///////////////////////////////////////////////////////////////////////////////
-
 class Menu
 {
 public:
