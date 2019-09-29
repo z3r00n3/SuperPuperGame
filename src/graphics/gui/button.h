@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Common { enum ButtonState; };
+namespace ButtonState { enum ButtonState; };
 class Sprite;
 class Text;
 
@@ -9,7 +9,7 @@ class Button
 public:
 	// Setters
 	void SetPosition(float x, float y);
-	void SetState(Common::ButtonState state);
+	void SetState(ButtonState::ButtonState state);
 
 	// Getters
 
@@ -30,6 +30,6 @@ private:
 	int _img_id_select;
 	Sprite *_sprite;
 	Text *_text;
-	Common::ButtonState _state;
+	ButtonState::ButtonState _state;
 	void(*_action)();
 };

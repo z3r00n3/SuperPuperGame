@@ -13,7 +13,7 @@
 // used to make a more unique folder for the write path
 #define COMPANY_NAME "My Company"
 
-namespace Common { enum GameState; };
+namespace GameState { enum GameState; };
 class Sprite;
 class Menu;
 class Input;
@@ -39,7 +39,7 @@ private:
 	Menu *_main_menu;
 	Input *_input;
 	Command *_command;
-	Common::GameState _gameState;
+	GameState::GameState _gameState;
 };
 
 extern app App;

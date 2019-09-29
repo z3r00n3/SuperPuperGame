@@ -8,7 +8,6 @@
 
 // Namespace
 using namespace AGK;
-using namespace Common;
 
 app App;
 

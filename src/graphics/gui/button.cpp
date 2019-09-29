@@ -4,8 +4,6 @@
 #include "src/graphics/sprite.h"
 #include "src/graphics/text.h"
 
-using namespace Common;
-
 // SETTERS
 
 void Button::SetPosition(float x, float y)
@@ -16,7 +14,7 @@ void Button::SetPosition(float x, float y)
 	_text->SetPosition(x, y - agk::GetTextTotalHeight(_text->GetID()) / 2);
 }
 
-void Button::SetState(ButtonState state)
+void Button::SetState(ButtonState::ButtonState state)
 {
 	switch (state)
 	{

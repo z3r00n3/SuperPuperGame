@@ -2,8 +2,6 @@
 #include "src/graphics/text.h"
 #include "src/utils/common.h"
 
-using namespace Common;
-
 Text::~Text()
 {
 	delete _position;
@@ -31,7 +29,7 @@ void Text::SetColor(unsigned int red, unsigned int green, unsigned int blue)
 	agk::SetTextColor(_id, red, green, blue);
 }
 
-void Text::SetAlignment(TextAlignment alignment)
+void Text::SetAlignment(TextAlignment::TextAlignment alignment)
 {
 	agk::SetTextAlignment(_id, alignment);
 }

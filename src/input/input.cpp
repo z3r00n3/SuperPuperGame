@@ -3,8 +3,6 @@
 #include "src/input/command.h"
 #include "src/utils/common.h"
 
-using namespace Common;
-
 Input::Input()
 {
 	_keyEnter  = new ButtonActivate();

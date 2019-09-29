@@ -16,7 +16,7 @@
 #define VIRTUAL_WIDTH  960
 #define VIRTUAL_HEIGHT 540
 
-#define APP_VERSION "v 0.20b"
+#define APP_VERSION "v 0.20c"
 
 #define DBG_FILE "../DbgLog.txt"
 
@@ -33,32 +33,41 @@
 // ENUMS
 ///////////////////////////////////////////////////////////////////////////////
 
-namespace Common
+namespace Key
 {
 	enum Key
 	{
-		ENTER  = 13,
+		ENTER = 13,
 		ESCAPE = 27,
-		LEFT   = 37,
-		UP     = 38,
-		RIGHT  = 39,
-		DOWN   = 40,
+		LEFT = 37,
+		UP = 38,
+		RIGHT = 39,
+		DOWN = 40,
 	};
+}
 
+namespace TextAlignment
+{
 	enum TextAlignment
 	{
-		LEFT   = 0,
+		LEFT = 0,
 		CENTER = 1,
-		RIGHT  = 2,
+		RIGHT = 2,
 	};
+}
 
+namespace ButtonState
+{
 	enum ButtonState
 	{
-		IDLE   = 0,
-		FOCUS  = 1,
+		IDLE = 0,
+		FOCUS = 1,
 		SELECT = 2,
 	};
+}
 
+namespace GameState
+{
 	enum GameState
 	{
 		MAIN_MENU = 0,
@@ -80,7 +89,7 @@ struct MenuTextData
 	std::string text;
 	float x, y;
 	float size;
-	Common::TextAlignment alignment;
+	TextAlignment::TextAlignment alignment;
 };
 
 struct ButtonData

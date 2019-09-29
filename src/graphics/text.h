@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace Common { enum TextAlignment; };
+namespace TextAlignment { enum TextAlignment; };
 struct Coords;
 
 class Text
@@ -14,7 +14,7 @@ public:
 	void SetPosition(float x, float y);
 	void SetSize(float size);
 	void SetColor(unsigned int red, unsigned int green, unsigned int blue);
-	void SetAlignment(Common::TextAlignment alignment);
+	void SetAlignment(TextAlignment::TextAlignment alignment);
 
 	// Getters
 	int GetID();
