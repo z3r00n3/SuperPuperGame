@@ -25,8 +25,8 @@ class app
 public:
 	// constructor
 	//app() { memset(this, 0, sizeof(app)); }
-	app() { ; }
-	~app() { ; }
+	//app() { ; }
+	//~app() { ; }
 
 	// main app functions - mike to experiment with a derived class for this..
 	void Begin(void);
@@ -34,8 +34,6 @@ public:
 	void End(void);
 
 private:
-	//Sprite *_WS;
-	//Sprite *_Tower;
 	Menu *_main_menu;
 	Input *_input;
 	Command *_command;

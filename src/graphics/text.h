@@ -1,30 +1,20 @@
 #pragma once
 
-#include <string>
-
-namespace TextAlignment { enum TextAlignment; };
 struct Coords;
+struct TextData;
 
 class Text
 {
 public:
-	~Text();
-
 	// Setters
-	void SetPosition(float x, float y);
-	void SetSize(float size);
-	void SetColor(unsigned int red, unsigned int green, unsigned int blue);
-	void SetAlignment(TextAlignment::TextAlignment alignment);
+	void SetPosition(Coords coords);//???пересмотреть позиционирование
 
 	// Getters
 	int GetID();
 
 	// Management
-	void Initialize(std::string text, float x, float y, float size);
+	void Initialize(TextData data);
 
 private:
 	unsigned int _id;
-	float _size;
-	std::string _text;
-	Coords *_position;
 };

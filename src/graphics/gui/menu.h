@@ -8,19 +8,15 @@ class Button;
 class Menu
 {
 public:
-	~Menu()
-	{
-		//delete [] _menu;
-	}
+	~Menu();
 
-	void Initialize(int menu_size, int active_item, MenuTextData title, MenuTextData note);
+	void Initialize(MenuData menu);
 	void Update();
 	void ButtonActivate();
 	void ButtonNext();
 	void ButtonLast();
 
 private:
-	int _img_id_background;
 	int _size;
 	int _active_item;
 	Sprite *_background;

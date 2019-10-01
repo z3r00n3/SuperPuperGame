@@ -5,27 +5,28 @@
 Sprite::~Sprite()
 {
 	delete _position;
+	delete _dimensions;
 }
 
 // SETTERS
 
-void Sprite::SetOffset(float x, float y)
+void Sprite::SetOffset(Coords coords)
 {
-	agk::SetSpriteOffset(_id, x, y);
+	agk::SetSpriteOffset(_id, coords.x, coords.y);
 }
 
-void Sprite::SetPositionByOffset(float x, float y)
+void Sprite::SetPositionByOffset(Coords coords)
 {
-	agk::SetSpritePositionByOffset(_id, x, y);
-
 	_position->x = agk::GetSpriteX(_id);
 	_position->y = agk::GetSpriteY(_id);
+	
+	agk::SetSpritePositionByOffset(_id, coords.x, coords.y);
 }
 
-void Sprite::SetImage(int img_id)
-{
-	agk::SetSpriteImage(_id, img_id);
-}
+//void Sprite::SetImage(unsigned int img_id)
+//{
+//	agk::SetSpriteImage(_id, img_id);
+//}
 
 // GETTERS
 
@@ -41,44 +42,47 @@ float Sprite::GetY()
 
 float Sprite::GetWidth()
 {
-	return _width;
+	return _dimensions->width;
 }
 
 float Sprite::GetHeight()
 {
-	return _height;
+	return _dimensions->height;
 }
 
 // MANAGEMENT
 
-void Sprite::Initialize(int img_id, float x, float y, float width, float height)
+void Sprite::Initialize(SpriteData data)
 {
-	_id = agk::CreateSprite(img_id);
+	_id = agk::CreateSprite(data.img_id);
 
 	_position = new Coords();
-	_position->x = x;
-	_position->y = y;
-	agk::SetSpritePosition(_id, x, y);
+	_position->x = data.position.x;
+	_position->y = data.position.y;
+	agk::SetSpritePosition(_id, data.position.x, data.position.y);
 
-	_width = width;
-	_height = height;
-	agk::SetSpriteSize(_id, width, height);
+	_dimensions = new Dimensions();
+	_dimensions->width  = data.dimensions.width;
+	_dimensions->height = data.dimensions.height;
+	agk::SetSpriteSize(_id, data.dimensions.width, data.dimensions.height);
 }
 
+/*
+ * Отрисовывает рамку вокруг спрайта
+ * Пока использовалось только для дебага
+ * false - рамка не залитая
+ * true  - рамка залитая
+ */
 void Sprite::DrawBounds(bool fill)
 {
-	int red = agk::MakeColor(255, 0, 0);
-	int green = agk::MakeColor(0, 255, 0);
-	int blue = agk::MakeColor(0, 0, 255);
-	int middle = agk::MakeColor(127, 127, 127);
-
 	agk::DrawBox(_position->x,
 				 _position->y,
-				 _position->x + _width,
-				 _position->y + _height,
-				 red,
-				 green,
-				 blue,
-				 middle,
+				 _position->x + _dimensions->width,
+				 _position->y + _dimensions->height,
+				 // здесь использую литеральные константы
+				 agk::MakeColor(255, 0, 0),     // красный
+				 agk::MakeColor(0, 255, 0),     // зеленый
+				 agk::MakeColor(0, 0, 255),     // синий
+				 agk::MakeColor(127, 127, 127), // средний между тремя компонентами цвета
 				 fill);
 }

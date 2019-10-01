@@ -19,7 +19,7 @@ void app::Begin(void)
 	// Alternative approach for the coordinate system in AGK, that set fixed
 	// resolution. Default approach it's a percentage based system where 0,0
 	// represents the top left corner and 100,100 the bottom right
-	agk::SetVirtualResolution(960, 540);
+	agk::SetVirtualResolution(VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
 	
 	// This statements specifies the width to height ratio of the window or
 	// screen. If this statement is omitted from a program using the percentage
@@ -44,7 +44,7 @@ void app::Begin(void)
 	_gameState = GameState::MAIN_MENU;
 
 	_main_menu = new Menu();
-	_main_menu->Initialize(MAIN_MENU_SIZE, 0, Title, Note);
+	_main_menu->Initialize(MAIN_MENU_BG_IMAGE, Title, Note, MAIN_MENU_SIZE, 0);
 
 	_input = new Input();
 }

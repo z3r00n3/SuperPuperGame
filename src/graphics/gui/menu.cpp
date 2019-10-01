@@ -7,10 +7,6 @@
 
 #include <vector>
 
-///////////////////////////////////////////////////////////////////////////////
-// GLOBALS
-///////////////////////////////////////////////////////////////////////////////
-
 std::vector<ButtonData> MainMenuData =
 {
 	{480.0, 150.0, 300.0, 100.0, "Start",    30.0, &ButtonStartAction},
@@ -18,16 +14,18 @@ std::vector<ButtonData> MainMenuData =
 	{480.0, 390.0, 300.0, 100.0, "About",    30.0, &ButtonStartAction},
 };
 
-///////////////////////////////////////////////////////////////////////////////
-// MENU
-///////////////////////////////////////////////////////////////////////////////
-
-void Menu::Initialize(int menu_size, int active_item, MenuTextData title, MenuTextData note)
+Menu::~Menu()
 {
-	_img_id_background = agk::LoadImage(MAIN_MENU_BG_IMAGE);
-	
+	delete _background;
+	delete _title;
+	delete _note;
+	delete[] _menu;
+}
+
+void Menu::Initialize(MenuData menu)
+{
 	_background = new Sprite();
-	_background->Initialize(_img_id_background, 0.0, 0.0, VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
+	_background->Initialize({ agk::LoadImage(menu.bg_image), 0.0, 0.0, VIRTUAL_WIDTH, VIRTUAL_HEIGHT });
 
 	_title = new Text();
 	_title->Initialize(title.text, title.x, title.y, title.size);
@@ -50,7 +48,7 @@ void Menu::Initialize(int menu_size, int active_item, MenuTextData title, MenuTe
 							MainMenuData[i].action);
 
 	_active_item = active_item;
-	_menu[active_item].SetState(ButtonState::FOCUS);
+	//_menu[active_item].SetState(ButtonState::FOCUS);
 }
 
 void Menu::Update()
@@ -61,21 +59,21 @@ void Menu::Update()
 
 void Menu::ButtonActivate()
 {
-	_menu[_active_item].SetState(ButtonState::SELECT);
+	//_menu[_active_item].SetState(ButtonState::SELECT);
 	_menu[_active_item].Action();
 }
 
 void Menu::ButtonNext()
 {
-	_menu[_active_item].SetState(ButtonState::IDLE);
+	//_menu[_active_item].SetState(ButtonState::IDLE);
 	_active_item > 0 ? _active_item-- : _active_item = _size - 1;
-	_menu[_active_item].SetState(ButtonState::FOCUS);
+	//_menu[_active_item].SetState(ButtonState::FOCUS);
 }
 
 void Menu::ButtonLast()
 {
-	_menu[_active_item].SetState(ButtonState::IDLE);
+	//_menu[_active_item].SetState(ButtonState::IDLE);
 	_active_item < _size - 1 ? _active_item++ : _active_item = 0;
-	_menu[_active_item].SetState(ButtonState::FOCUS);
+	//_menu[_active_item].SetState(ButtonState::FOCUS);
 }
 

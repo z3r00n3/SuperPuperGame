@@ -4,63 +4,66 @@
 #include "src/graphics/sprite.h"
 #include "src/graphics/text.h"
 
+Button::~Button()
+{
+	delete _sprite;
+	delete _text;
+}
+
 // SETTERS
 
-void Button::SetPosition(float x, float y)
+void Button::SetPosition(Coords coords)
 {
-	_sprite->SetOffset(_sprite->GetWidth() / 2, _sprite->GetHeight() / 2);
-	_sprite->SetPositionByOffset(x, y);
+	_sprite->SetOffset({ _sprite->GetWidth() / 2, _sprite->GetHeight() / 2 });
+	_sprite->SetPositionByOffset(coords);
 
-	_text->SetPosition(x, y - agk::GetTextTotalHeight(_text->GetID()) / 2);
+	_text->SetPosition({ coords.x, coords.y - agk::GetTextTotalHeight(_text->GetID()) / 2 });
 }
 
-void Button::SetState(ButtonState::ButtonState state)
-{
-	switch (state)
-	{
-	case ButtonState::IDLE:
-		_state = state;
-		_sprite->SetImage(_img_id_idle);
-		break;
-	case ButtonState::FOCUS:
-		_state = state;
-		_sprite->SetImage(_img_id_focus);
-		break;
-	case ButtonState::SELECT:
-		_state = state;
-		_sprite->SetImage(_img_id_select);
-		break;
-	default:
-		break;
-	}
-}
+//void Button::SetState(ButtonState::ButtonState state)
+//{
+//	_state = state;
+//	
+//	switch (state)
+//	{
+//	case ButtonState::IDLE:
+//		_sprite->SetImage(_img_id_idle);
+//		break;
+//	case ButtonState::FOCUS:
+//		_sprite->SetImage(_img_id_focus);
+//		break;
+//	case ButtonState::SELECT:
+//		_sprite->SetImage(_img_id_select);
+//		break;
+//	default:
+//		break;
+//	}
+//}
 
 // GETTERS
 
 // MANAGEMENT
 
-void Button::Initialize(float x,
-	float y,
-	float width,
-	float height,
-	std::string name,
-	float text_size,
-	void(*action)())
+void Button::Initialize(ButtonData data)
 {
-	_img_id_idle = agk::LoadImage(BUTTON_IDLE_IMAGE, false);
-	_img_id_focus = agk::LoadImage(BUTTON_FOCUS_IMAGE, false);
-	_img_id_select = agk::LoadImage(BUTTON_SELECT_IMAGE, false);
+	_img_id_idle   = agk::LoadImage(data.img_idle, false);
+	_img_id_focus  = agk::LoadImage(data.img_focus, false);
+	_img_id_select = agk::LoadImage(data.img_select, false);
 
 	_sprite = new Sprite();
-	_sprite->Initialize(_img_id_idle, x, y, width, height);
+	_sprite->Initialize({ _img_id_idle, data.position, data.dimensions });
 
 	_text = new Text();
-	_text->Initialize(name, x, y, text_size);
-	_text->SetAlignment(TextAlignment::CENTER);
+	_text->Initialize({ data.label });
 
-	_action = action;
+	_action = data.action;
 
-	SetPosition(_sprite->GetX(), _sprite->GetY());
+	/*
+	 * важно, чтобы вызов SetPosition() был после создания и инициализации
+	 * спрайта и текста, так как, в свою очередь, этод метод задает новую
+	 * позицию для спрайта и текста
+	 */
+	SetPosition({ _sprite->GetX(), _sprite->GetY() });
 }
 
 void Button::Update()
