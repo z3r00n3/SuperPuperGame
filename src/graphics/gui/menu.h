@@ -1,6 +1,6 @@
 #pragma once
 
-struct MenuTextData;
+struct MenuData;
 class Sprite;
 class Text;
 class Button;
@@ -11,13 +11,13 @@ public:
 	~Menu();
 
 	void Initialize(MenuData menu);
-	void Update();
+	void Update();//?
 	void ButtonActivate();
 	void ButtonNext();
 	void ButtonLast();
 
 private:
-	int _size;
+	int _num_of_items;
 	int _active_item;
 	Sprite *_background;
 	Button *_menu;

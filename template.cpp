@@ -6,13 +6,35 @@
 #include "src/input/input.h"
 #include "src/input/command.h"
 
+#include <vector>
+
 // Namespace
 using namespace AGK;
 
 app App;
 
-MenuTextData Title = { "SuperPuperGame", 480.0, 0.0, 70.0, TextAlignment::CENTER };
-MenuTextData Note = { APP_VERSION, 40.0, 510.0, 25.0, TextAlignment::CENTER };
+///////////////////////////////////////////////////////////////////////////////
+// Данные о свойствах объектов, составляющих игру
+///////////////////////////////////////////////////////////////////////////////
+
+std::vector<ButtonData> MainMenuButtons =
+{
+	{ BUTTON_IDLE_IMAGE, BUTTON_FOCUS_IMAGE, BUTTON_SELECT_IMAGE, { 480.0, 150.0 }, { 300.0, 100.0 }, { "Start", 30.0 },    &ButtonStartAction },
+	{ BUTTON_IDLE_IMAGE, BUTTON_FOCUS_IMAGE, BUTTON_SELECT_IMAGE, { 480.0, 270.0 }, { 300.0, 100.0 }, { "Settings", 30.0 }, &ButtonStartAction },
+	{ BUTTON_IDLE_IMAGE, BUTTON_FOCUS_IMAGE, BUTTON_SELECT_IMAGE, { 480.0, 390.0 }, { 300.0, 100.0 }, { "About", 30.0 },    &ButtonStartAction },
+};
+Color White = { 255, 255, 255 };
+TextData MainMenuTitle = { APP_NAME,    480.0, 0.0,   70.0, TextAlignment::CENTER, White };
+TextData MainMenuNote  = { APP_VERSION, 40.0,  510.0, 25.0, TextAlignment::CENTER, White };
+MenuData MainMenu = { MAIN_MENU_BG_IMAGE,
+					  { 0.0, 0.0 },
+					  { VIRTUAL_WIDTH, VIRTUAL_HEIGHT },
+					  MainMenuTitle,
+					  MainMenuNote,
+					  sizeof(MainMenuButtons) / sizeof(MainMenuButtons[0],
+					  MainMenuButtons) };
+
+///////////////////////////////////////////////////////////////////////////////
 
 void app::Begin(void)
 {
@@ -44,7 +66,7 @@ void app::Begin(void)
 	_gameState = GameState::MAIN_MENU;
 
 	_main_menu = new Menu();
-	_main_menu->Initialize(MAIN_MENU_BG_IMAGE, Title, Note, MAIN_MENU_SIZE, 0);
+	_main_menu->Initialize(MainMenu);
 
 	_input = new Input();
 }

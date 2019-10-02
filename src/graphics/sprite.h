@@ -11,7 +11,7 @@ public:
 
 	// Setters
 	void SetOffset(Coords coords);//???пересмотреть позиционирование
-	void SetPositionByOffset(Coords coords);//???
+	void SetPositionByOffset(Coords coords);//???пересмотреть позиционирование
 	//???void SetImage(unsigned int img_id);
 
 	// Getters

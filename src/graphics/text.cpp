@@ -22,8 +22,8 @@ void Text::Initialize(TextData data)
 {
 	_id = agk::CreateText(data.text.c_str());
 
-	agk::SetTextSize(_id, data.size);
 	agk::SetTextPosition(_id, data.coords.x, data.coords.y);
-	agk::SetTextColor(_id, data.color.red, data.color.green, data.color.blue);
+	agk::SetTextSize(_id, data.size);
 	agk::SetTextAlignment(_id, data.alignment);
+	agk::SetTextColor(_id, data.color.red, data.color.green, data.color.blue);
 }

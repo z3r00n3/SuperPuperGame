@@ -19,8 +19,8 @@ public:
 
 	// Management
 	void Initialize(ButtonData data);
-	void Update();//???
-	void Action();//???
+	void Update();//?
+	void Action();//?
 
 private:
 	unsigned int _img_id_idle;//?

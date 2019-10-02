@@ -37,7 +37,7 @@ private:
 	Menu *_main_menu;
 	Input *_input;
 	Command *_command;
-	GameState::GameState _gameState;
+	GameState::GameState _gameState;//?
 };
 
 extern app App;
