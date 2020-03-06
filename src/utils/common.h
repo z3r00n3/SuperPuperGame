@@ -5,6 +5,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include <string>
+#include <vector>
 
 ///////////////////////////////////////////////////////////////////////////////
 // DEFINES
@@ -13,10 +14,12 @@
 #define VIRTUAL_WIDTH  960
 #define VIRTUAL_HEIGHT 540
 
-#define APP_VERSION "v 0.22a"
+#define APP_VERSION "v 0.23a"
 #define APP_NAME "SuperPuperGame"
 
 #define DBG_FILE "../DbgLog.txt"
+
+#define MAIN_MENU_SIZE 3
 
 #define MAIN_MENU_BG_IMAGE  "media/images/backgrounds/main_menu_background.png"
 #define BUTTON_IDLE_IMAGE   "media/images/buttons/idle.png"
@@ -127,8 +130,8 @@ struct MenuData
 	Coords position;
 	Dimensions dimensions;
 	TextData title, note;
-	int num_of_items;
-	ButtonData *buttons;
+	//int num_of_items;
+	std::vector<ButtonData> buttons;//???
 };
 
 ///////////////////////////////////////////////////////////////////////////////

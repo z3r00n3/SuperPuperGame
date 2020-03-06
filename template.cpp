@@ -5,8 +5,9 @@
 #include "src/graphics/gui/menu.h"
 #include "src/input/input.h"
 #include "src/input/command.h"
+#include <array>
 
-#include <vector>
+//#include <vector>
 
 // Namespace
 using namespace AGK;
@@ -31,8 +32,8 @@ MenuData MainMenu = { MAIN_MENU_BG_IMAGE,
 					  { VIRTUAL_WIDTH, VIRTUAL_HEIGHT },
 					  MainMenuTitle,
 					  MainMenuNote,
-					  sizeof(MainMenuButtons) / sizeof(MainMenuButtons[0],
-					  MainMenuButtons) };
+					  //MainMenuButtons.size,
+					  MainMenuButtons };
 
 ///////////////////////////////////////////////////////////////////////////////
 

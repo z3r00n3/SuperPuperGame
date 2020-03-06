@@ -24,10 +24,10 @@ void Menu::Initialize(MenuData menu)
 	_note = new Text();
 	_note->Initialize(menu.note);
 
-	_num_of_items = menu.num_of_items;
+	_num_of_items = menu.buttons.size;
 
-	_menu = new Button[menu.num_of_items];
-	for (int i = 0; i < menu.num_of_items; i++)
+	_menu = new Button[menu.buttons.size];
+	for (int i = 0; i < menu.buttons.size; i++)
 		_menu[i].Initialize(menu.buttons[i]);
 
 	_active_item = 0;
